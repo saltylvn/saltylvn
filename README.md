@@ -2,7 +2,7 @@
 
 **Solutions Engineering | Building AI Agents & Workflows | Automation, APIs & Integrations | Strategic Tech Support Analyst | Former Sales Leader & Business Partner**
 
-I build AI workflows, integrations and full-stack apps, from idea to working product, with [Claude Code](https://claude.com/claude-code) as my AI pair programmer. I own the product decisions, test with real services and devices, and ship in small pull requests with automated tests.
+I turn business problems into working solutions: AI agents and workflows, automations, API integrations and full-stack apps, from idea to working product. I work hands-on with AI agents such as [Claude Code](https://claude.com/claude-code), Cursor and Grok, choosing the right one for each job while I own the product decisions. My background in sales leadership and technical support shapes how I build: I work with teams and stakeholders to understand the real problem, translate between business and technical needs, test with real services and devices, and ship in small pull requests with automated tests.
 
 ## Projects
 
@@ -37,6 +37,8 @@ A wellness tracker for food, lifting, cardio and weight, with AI calorie and mac
 **Tech stack:** Next.js 16 · React 19 · TypeScript · Tailwind CSS · Supabase (Postgres, auth, row-level security) · Google Gemini · ZXing · Vitest · Vercel · GitHub Actions · CodeQL
 
 ## All tools
+
+**AI agents:** Claude Code · Cursor · Grok
 
 **AI and automation:** Python · FastAPI · Google Gemini · n8n · HubSpot and Slack APIs · OAuth 2.0 · Webhooks · LLM evals
 

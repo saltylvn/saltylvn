@@ -2,7 +2,7 @@
 
 **Solutions Engineering | Building AI Agents & Workflows | Automation, APIs & Integrations | Strategic Tech Support Analyst | Former Sales Leader & Business Partner**
 
-I build AI workflows, integrations and full-stack apps, from idea to working product, with [Claude Code](https://claude.com/claude-code) as my AI pair programmer. I own the product decisions, test with real services and devices, and ship in small pull requests with automated tests. Based in Lehi, Utah.
+I build AI workflows, integrations and full-stack apps, from idea to working product, with [Claude Code](https://claude.com/claude-code) as my AI pair programmer. I own the product decisions, test with real services and devices, and ship in small pull requests with automated tests.
 
 ## Projects
 

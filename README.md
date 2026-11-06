@@ -10,7 +10,7 @@ I turn business problems into working solutions: AI agents and workflows, automa
 
 An AI workflow that triages contact form messages across Gemini, HubSpot and Slack, and asks a person before risky actions. It handled 84% of 70 held-out synthetic messages alone at 97% correct, and has run live on test accounts.
 
-[![Human-in-the-Loop Triage system map: contact form, API, database and worker, connected to Gemini, RDAP, HubSpot, Slack and a human approver](https://github.com/saltylvn/human-in-the-loop-triage/raw/main/docs/assets/system-map.png)](https://github.com/saltylvn/human-in-the-loop-triage)
+[![Human-in-the-Loop Triage overview: the triage agent in the middle, connected to Gemini, RDAP, HubSpot and Slack, with its six workflow steps, results on 70 held-out messages, a pending Slack approval and the tools it is built with](https://github.com/saltylvn/human-in-the-loop-triage/raw/main/docs/assets/overview.png)](https://github.com/saltylvn/human-in-the-loop-triage)
 
 **Highlights:** HubSpot OAuth · signed webhooks · five layers against duplicates · append-only audit log · 100-example eval · 83 tests
 

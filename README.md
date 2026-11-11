@@ -19,9 +19,9 @@ I turn business problems into working software: AI agent teams, workflows with a
 
 ### [Benchmark](https://github.com/saltylvn/benchmark-ai) · [live demo](https://benchmark-qypb.onrender.com) (tap **View the demo**; the free host takes about a minute to wake)
 
-An AI agent team for construction project managers. Every weekday at 6:00 a Coordinator agent runs 11 checks across every home, trade and PM (sub insurance, permits, long-lead orders, buyer selections, loan draws, closing dates, workload), then drafts the follow-ups: a Slack nudge, a vendor order, a construction-loan draw request to the lender. A named person approves each one in a phone-first app before anything goes out. Code computes every date and dollar; a language model may only reword, behind a guard that rejects any change to a fact.
+An AI agent team for construction project managers in every sector. Every weekday at 6:00 a Coordinator agent runs 11 checks across every job, trade and PM (sub insurance, permits, long-lead orders, buyer selections, loan draws, closing dates, workload), then drafts the follow-ups: a Slack nudge, a vendor order, a construction-loan draw request to the lender. A named person approves each one in a phone-first app (iPhone, iPad and laptop, in a paper-and-ink light mode and a navy dark mode) before anything goes out. Code computes every date and dollar; a language model may only reword, behind a guard that rejects any change to a fact.
 
-[![Benchmark overview: the morning workflow from a weekday schedule to the Coordinator agent and its checks, drafted follow-ups behind a fact guard, human approval, then Slack, email drafts to clients and lenders, and signed webhooks to n8n; the app on iPad and iPhone; 150+ tests and 300 random-portfolio property tests](https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/benchmark-linkedin.jpg)](https://github.com/saltylvn/benchmark-ai)
+[![Benchmark overview: five layers from sources to TypeScript agents (Coordinator with 11 checks, supervisor team, critic), a versioned snapshot and fact guard, the Flask service with its approval queue, REST API and security, then a named PM approves before Slack, email drafts and signed webhooks to n8n; the app on iPad and iPhone; 157 tests and 300 property-test portfolios](https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/benchmark-linkedin.jpg)](https://github.com/saltylvn/benchmark-ai)
 
 <table>
   <tr>
@@ -35,11 +35,11 @@ An AI agent team for construction project managers. Every weekday at 6:00 a Coor
 <table>
   <tr>
     <td width="50%"><a href="https://github.com/saltylvn/benchmark-ai#readme"><img src="https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/screens/ipad-queue.jpg" alt="The approval queue on iPad in two columns"></a><br><sub><b>Approval queue:</b> Approve or Later on every drafted follow-up</sub></td>
-    <td width="50%"><a href="https://github.com/saltylvn/benchmark-ai#readme"><img src="https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/screens/board-desktop.jpg" alt="Where every job stands: a board by stage with status, progress and what changed since yesterday"></a><br><sub><b>Job board:</b> every home by stage, and what changed since yesterday</sub></td>
+    <td width="50%"><a href="https://github.com/saltylvn/benchmark-ai#readme"><img src="https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/screens/board-desktop.jpg" alt="Where every job stands: a board by stage with status, progress and what changed since yesterday"></a><br><sub><b>Job board:</b> every job by stage, and what changed since yesterday</sub></td>
   </tr>
 </table>
 
-**Highlights:** Coordinator agent with 11 checks, written as a pure, tested function · supervisor team whose Critic rejects and retries plans · fact guard on every model rewrite · Slack bot with an audit log and two locks before any send · Google and Slack OAuth with an allowlist · bearer-token automation API · HMAC-signed webhooks with retries, plus n8n templates · GitHub Actions cron for the 8:00 brief · nonce CSP and CSRF tokens · 150+ tests, including 300 random-portfolio property tests
+**Highlights:** Coordinator agent with 11 checks, written as a pure, tested function · supervisor team whose Critic rejects and retries plans · fact guard on every model rewrite · Slack bot with an audit log and two locks before any send · Google and Slack OAuth with an allowlist · bearer-token automation API · HMAC-signed webhooks with retries, plus n8n templates · GitHub Actions cron for the 8:00 brief · nonce CSP and CSRF tokens · CodeQL on every change · 157 tests, including 300 random-portfolio property tests
 
 **Tech stack:** TypeScript · Node 20 · Python · Flask · gunicorn · Slack API · Google OAuth · n8n · HMAC webhooks · REST · GitHub Actions · CodeQL · Dependabot · Render · PWA
 

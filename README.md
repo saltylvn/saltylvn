@@ -7,7 +7,7 @@ I turn business problems into working software: AI agent teams, workflows with a
 | What I build | Where to see it |
 |---|---|
 | **AI agent teams** | [Benchmark](https://github.com/saltylvn/benchmark-ai): agents check every construction job each morning and draft the follow-ups; a person approves each one |
-| **AI workflows with a person in the loop** | [Human-in-the-Loop Triage](https://github.com/saltylvn/human-in-the-loop-triage): Gemini, HubSpot and Slack, with approvals, evals and an audit log |
+| **AI workflows with a person in the loop** | [Handoff Triage](https://github.com/saltylvn/handoff-triage): Gemini, HubSpot and Slack, with approvals, evals and an audit log |
 | **API integrations** | OAuth 2.0 with token refresh, HMAC-signed webhooks, Slack bots, retries with backoff, idempotent writes |
 | **Full-stack apps in daily use** | [Dialed Kitchen](https://github.com/saltylvn/dialed-kitchen) and [DEVELOP](https://github.com/saltylvn/wellness-tracker): Next.js, Supabase Postgres with row-level security, Gemini |
 
@@ -43,18 +43,18 @@ An AI agent team for construction project managers in every sector. Every weekda
 
 **Tech stack:** TypeScript · Node 20 · Python · Flask · gunicorn · Slack API · Google OAuth · n8n · HMAC webhooks · REST · GitHub Actions · CodeQL · Dependabot · Render · PWA
 
-### [Human-in-the-Loop Triage](https://github.com/saltylvn/human-in-the-loop-triage)
+### [Handoff Triage](https://github.com/saltylvn/handoff-triage)
 
 An AI workflow that triages a company's contact form across Gemini, RDAP, HubSpot and Slack, and asks a person before anything risky. On 70 held-out synthetic messages it handled **84.3%** alone at **96.6%** correct, sent **4 of 4** sensitive messages to a person, and costs about **$0.33 per 1,000 messages**. It has also run live on HubSpot and Slack test accounts, including a real approval click.
 
 <table>
   <tr>
-    <td width="50%"><a href="https://github.com/saltylvn/human-in-the-loop-triage#readme"><img src="https://github.com/saltylvn/human-in-the-loop-triage/raw/main/docs/assets/workflow.png" alt="Automation workflow: receive a signed webhook, classify with Gemini, enrich, route with plain rules, act in HubSpot and Slack, and log each decision; seven rules that send a message to a person"></a><br><sub><b>Workflow:</b> the AI supplies the facts, code decides what happens</sub></td>
-    <td width="50%"><a href="https://github.com/saltylvn/human-in-the-loop-triage#readme"><img src="https://github.com/saltylvn/human-in-the-loop-triage/raw/main/docs/assets/integrations-security.png" alt="Integrations: HubSpot OAuth 2.0 in six steps, a signed Slack approval click, a retry budget, and an API log of Gemini, RDAP, HubSpot and Slack calls"></a><br><sub><b>Integrations and APIs:</b> HubSpot OAuth, signed Slack approvals, retries and an API log</sub></td>
+    <td width="50%"><a href="https://github.com/saltylvn/handoff-triage#readme"><img src="https://github.com/saltylvn/handoff-triage/raw/main/docs/assets/workflow.png" alt="Automation workflow: receive a signed webhook, classify with Gemini, enrich, route with plain rules, act in HubSpot and Slack, and log each decision; seven rules that send a message to a person"></a><br><sub><b>Workflow:</b> the AI supplies the facts, code decides what happens</sub></td>
+    <td width="50%"><a href="https://github.com/saltylvn/handoff-triage#readme"><img src="https://github.com/saltylvn/handoff-triage/raw/main/docs/assets/integrations-security.png" alt="Integrations: HubSpot OAuth 2.0 in six steps, a signed Slack approval click, a retry budget, and an API log of Gemini, RDAP, HubSpot and Slack calls"></a><br><sub><b>Integrations and APIs:</b> HubSpot OAuth, signed Slack approvals, retries and an API log</sub></td>
   </tr>
   <tr>
-    <td width="50%"><a href="https://github.com/saltylvn/human-in-the-loop-triage#readme"><img src="https://github.com/saltylvn/human-in-the-loop-triage/raw/main/docs/assets/architecture.png" alt="Architecture: contact form webhook to a FastAPI API, a SQLite queue and log, and a Python worker that calls Gemini, RDAP, HubSpot and Slack"></a><br><sub><b>Architecture:</b> a durable queue separates fast replies from slow work</sub></td>
-    <td width="50%"><a href="https://github.com/saltylvn/human-in-the-loop-triage#readme"><img src="https://github.com/saltylvn/human-in-the-loop-triage/raw/main/docs/assets/reliability.png" alt="Reliability: six failure scenarios such as duplicate webhooks, crashes and lost replies, each handled, and a retry timeline from 503 to 429 to 200"></a><br><sub><b>Reliability:</b> one record and one message, even when things fail</sub></td>
+    <td width="50%"><a href="https://github.com/saltylvn/handoff-triage#readme"><img src="https://github.com/saltylvn/handoff-triage/raw/main/docs/assets/architecture.png" alt="Architecture: contact form webhook to a FastAPI API, a SQLite queue and log, and a Python worker that calls Gemini, RDAP, HubSpot and Slack"></a><br><sub><b>Architecture:</b> a durable queue separates fast replies from slow work</sub></td>
+    <td width="50%"><a href="https://github.com/saltylvn/handoff-triage#readme"><img src="https://github.com/saltylvn/handoff-triage/raw/main/docs/assets/reliability.png" alt="Reliability: six failure scenarios such as duplicate webhooks, crashes and lost replies, each handled, and a retry timeline from 503 to 429 to 200"></a><br><sub><b>Reliability:</b> one record and one message, even when things fail</sub></td>
   </tr>
 </table>
 

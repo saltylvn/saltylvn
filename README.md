@@ -2,19 +2,20 @@
 
 **Solutions Engineering | Building AI Agents & Workflows | Automation, APIs & Integrations | Strategic Tech Support Analyst | Former Sales Leader & Business Partner**
 
-I turn business problems into working solutions: AI agents and workflows, automations, API integrations and full-stack apps, from idea to working product. I work hands-on with AI agents such as [Claude Code](https://claude.com/claude-code), Cursor and Grok, choosing the right one for each job while I own the product decisions. My background in sales leadership and technical support shapes how I build: I work with teams and stakeholders to understand the real problem, translate between business and technical needs, test with real services and devices, and ship in small pull requests with automated tests.
+I turn business problems into working software: AI agent teams, workflows with a person in the loop, API integrations and full-stack apps, from idea to deployed product. I build hands-on with AI coding agents ([Claude Code](https://claude.com/claude-code), Cursor, Grok) and own the product and architecture decisions myself. Years in sales leadership and technical support shape how I work: find the real problem with the people who have it, translate between business and technical teams, test against real services and devices, and ship in small pull requests with automated tests.
 
 | What I build | Where to see it |
 |---|---|
-| **AI agent teams** | [Benchmark](https://github.com/saltylvn/benchmark-ai): TypeScript agents that check every construction job each morning and draft the follow-ups, a Flask app to approve them, Slack and signed webhooks |
+| **AI agent teams** | [Benchmark](https://github.com/saltylvn/benchmark-ai): agents check every construction job each morning and draft the follow-ups; a person approves each one |
 | **AI workflows with a person in the loop** | [Human-in-the-Loop Triage](https://github.com/saltylvn/human-in-the-loop-triage): Gemini, HubSpot and Slack, with approvals, evals and an audit log |
-| **API integrations** | OAuth 2.0 with token refresh, signed webhooks, retries with backoff, idempotent writes |
+| **API integrations** | OAuth 2.0 with token refresh, HMAC-signed webhooks, Slack bots, retries with backoff, idempotent writes |
 | **Full-stack apps in daily use** | [Dialed Kitchen](https://github.com/saltylvn/dialed-kitchen) and [DEVELOP](https://github.com/saltylvn/wellness-tracker): Next.js, Supabase Postgres with row-level security, Gemini |
-| **Solution design** | [PM Bot](https://github.com/saltylvn/PMbot): agents, n8n automations and integrations for an IT delivery team |
+
+**Try them:** [Benchmark demo](https://benchmark-qypb.onrender.com) · [Dialed Kitchen demo](https://dialed-kitchen.vercel.app) · [DEVELOP demo](https://wellness-tracker-virid.vercel.app) (no sign-up for any of them)
 
 ---
 
-## Workflows, integrations and APIs
+## AI agents, workflows and integrations
 
 ### [Benchmark](https://github.com/saltylvn/benchmark-ai) · [live demo](https://benchmark-qypb.onrender.com) (tap **View the demo**; the free host takes about a minute to wake)
 
@@ -38,7 +39,7 @@ An AI agent team for construction project managers. Every weekday at 6:00 a Coor
   </tr>
 </table>
 
-**Highlights:** 11-check Coordinator agent as a pure, tested function · supervisor team with a Critic that rejects and retries plans · fact guard on every model rewrite · "since yesterday" diff computed by code · Slack bot with an audit log and two locks before any send · Google and Slack OAuth sign-in with an allowlist · bearer-token automation API · HMAC-signed webhooks with retries, plus n8n templates · GitHub Actions cron for the 8:00 brief · nonce CSP and CSRF tokens · 150+ tests, including 300 random-portfolio property tests · deployed on Render
+**Highlights:** Coordinator agent with 11 checks, written as a pure, tested function · supervisor team whose Critic rejects and retries plans · fact guard on every model rewrite · Slack bot with an audit log and two locks before any send · Google and Slack OAuth with an allowlist · bearer-token automation API · HMAC-signed webhooks with retries, plus n8n templates · GitHub Actions cron for the 8:00 brief · nonce CSP and CSRF tokens · 150+ tests, including 300 random-portfolio property tests
 
 **Tech stack:** TypeScript · Node 20 · Python · Flask · gunicorn · Slack API · Google OAuth · n8n · HMAC webhooks · REST · GitHub Actions · CodeQL · Dependabot · Render · PWA
 
@@ -99,43 +100,25 @@ A wellness tracker for weight, workouts and nutrition, now on **v2.0** and in da
 
 ---
 
-## Solution design
-
-### [PM Bot and the Solution Delivery Cockpit](https://github.com/saltylvn/PMbot)
-
-A solution design for an IT delivery team: a PM Bot orchestrator and six specialist agents on a Next.js and Supabase cockpit, with **n8n** as the automation layer connecting Slack, Jira, ServiceNow, GitHub and Google Workspace. People keep the decisions that change scope, money, dates or a cutover. The package has 15 workflow and architecture diagrams, written as code in Mermaid, and a time-saved model.
-
-[![Integration ecosystem: the Solution Delivery Cockpit connected to the n8n automation layer, Slack, Jira, ServiceNow, GitHub, Google Calendar, Gmail and Sheets, a language model and Supabase](https://github.com/saltylvn/PMbot/raw/main/assets/png/10-integration-ecosystem.png)](https://github.com/saltylvn/PMbot)
-
-<table>
-  <tr>
-    <td width="50%"><a href="https://github.com/saltylvn/PMbot"><img src="https://github.com/saltylvn/PMbot/raw/main/assets/png/01-agent-map.png" alt="Agent map: PM Bot orchestrating intake, planning, risk, cutover, status and copilot agents, with human-in-the-loop handoffs"></a><br><sub><b>Agent map:</b> six agents and four human handoffs</sub></td>
-    <td width="50%"><a href="https://github.com/saltylvn/PMbot"><img src="https://github.com/saltylvn/PMbot/raw/main/assets/charts/time-saved-weekly-by-automation.png" alt="Estimated staff time saved per week by automation, about 22 hours a week for the squad, an illustrative estimate"></a><br><sub><b>Time saved:</b> about 22 staff-hours a week (illustrative estimate)</sub></td>
-  </tr>
-</table>
-
-**Tech stack:** n8n · Mermaid · Python (matplotlib) · Slack · Jira · ServiceNow · GitHub · Google Workspace · Next.js · Supabase
-
----
-
 ## In progress
 
-**[LFG-optim](https://github.com/saltylvn/LFG-optim.)**: a local-first Python platform that shows where a team's time goes: a workload radar for open pull requests and review queues, pull request cycle-time analytics from a live GitHub connector, and an SE ops toolkit for demo prep and call summaries. Python 3.12 · mypy (strict) · ruff · pytest · GitHub Actions.
+- **[LFG-optim](https://github.com/saltylvn/LFG-optim.)**: a local-first platform that shows where a team's time goes and where work gets stuck. A workload radar for open pull requests and review queues, cycle-time analytics from a live GitHub connector, and an SE ops toolkit with agents that draft demo-prep briefs and call summaries but never send. Python 3.12 · FastAPI · httpx · mypy (strict) · ruff · pytest · GitHub Actions
+- **PM Bot** (private for now): a PM Bot orchestrator and six specialist agents for an IT delivery team, with n8n connecting Slack, Jira, ServiceNow, GitHub and Google Workspace.
 
 ---
 
 ## All tools
 
-**AI agents:** Claude Code · Cursor · Grok
+**AI coding agents:** Claude Code · Cursor · Grok
 
 **Agent design:** multi-agent orchestration (supervisor, critic, specialists) · human approval gates · fact guards · property-based evals
 
-**AI and automation:** TypeScript · Node · Python · Flask · FastAPI · Google Gemini · n8n · LLM evals · prompt-injection defense
+**AI and automation:** Python · FastAPI · Flask · TypeScript · Node · Google Gemini · OpenAI · n8n · LLM evals · prompt-injection defense
 
-**APIs and integrations:** HubSpot · Slack · GitHub · Google OAuth · RDAP · OAuth 2.0 · signed webhooks · REST
+**APIs and integrations:** HubSpot · Slack · GitHub · Google OAuth · OAuth 2.0 · RDAP · REST · HMAC-signed webhooks
 
 **Full-stack:** Next.js 16 · React 19 · TypeScript · Tailwind CSS · Supabase (Postgres, auth, row-level security) · Zod · Vitest
 
-**Delivery:** GitHub Actions · CodeQL · Dependabot · Docker · Vercel · Render
+**Delivery:** GitHub Actions · CodeQL · Dependabot · Docker · Vercel · Render · gunicorn
 
-**Diagrams and docs:** Mermaid · architecture decision records
+**Diagrams and docs:** Mermaid · SVG diagrams · architecture decision records

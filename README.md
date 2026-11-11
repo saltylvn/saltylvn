@@ -6,6 +6,7 @@ I turn business problems into working solutions: AI agents and workflows, automa
 
 | What I build | Where to see it |
 |---|---|
+| **AI agent teams** | [Benchmark](https://github.com/saltylvn/benchmark-ai): TypeScript agents that check every construction job each morning and draft the follow-ups, a Flask app to approve them, Slack and signed webhooks |
 | **AI workflows with a person in the loop** | [Human-in-the-Loop Triage](https://github.com/saltylvn/human-in-the-loop-triage): Gemini, HubSpot and Slack, with approvals, evals and an audit log |
 | **API integrations** | OAuth 2.0 with token refresh, signed webhooks, retries with backoff, idempotent writes |
 | **Full-stack apps in daily use** | [Dialed Kitchen](https://github.com/saltylvn/dialed-kitchen) and [DEVELOP](https://github.com/saltylvn/wellness-tracker): Next.js, Supabase Postgres with row-level security, Gemini |
@@ -14,6 +15,32 @@ I turn business problems into working solutions: AI agents and workflows, automa
 ---
 
 ## Workflows, integrations and APIs
+
+### [Benchmark](https://github.com/saltylvn/benchmark-ai) · [live demo](https://benchmark-qypb.onrender.com) (tap **View the demo**; the free host takes about a minute to wake)
+
+An AI agent team for construction project managers. Every weekday at 6:00 a Coordinator agent runs 11 checks across every home, trade and PM (sub insurance, permits, long-lead orders, buyer selections, loan draws, closing dates, workload), then drafts the follow-ups: a Slack nudge, a vendor order, a construction-loan draw request to the lender. A named person approves each one in a phone-first app before anything goes out. Code computes every date and dollar; a language model may only reword, behind a guard that rejects any change to a fact.
+
+[![Benchmark overview: the morning workflow from a weekday schedule to the Coordinator agent and its checks, drafted follow-ups behind a fact guard, human approval, then Slack, email drafts to clients and lenders, and signed webhooks to n8n; the app on iPad and iPhone; 150+ tests and 300 random-portfolio property tests](https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/benchmark-linkedin.jpg)](https://github.com/saltylvn/benchmark-ai)
+
+<table>
+  <tr>
+    <td width="25%" align="center"><img src="https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/screens/landing-phone.jpg" alt="Landing page on a phone"><br><sub>Landing</sub></td>
+    <td width="25%" align="center"><img src="https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/screens/today-phone.jpg" alt="Today: 8 things blocked and 16 follow-ups already drafted"><br><sub>Today</sub></td>
+    <td width="25%" align="center"><img src="https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/screens/draw-request-phone.jpg" alt="A drafted construction-loan draw request waiting for approval"><br><sub>Loan draw to approve</sub></td>
+    <td width="25%" align="center"><img src="https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/screens/today-phone-dark.jpg" alt="Today in dark mode"><br><sub>Dark mode</sub></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td width="50%"><a href="https://github.com/saltylvn/benchmark-ai#readme"><img src="https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/screens/ipad-queue.jpg" alt="The approval queue on iPad in two columns"></a><br><sub><b>Approval queue:</b> Approve or Later on every drafted follow-up</sub></td>
+    <td width="50%"><a href="https://github.com/saltylvn/benchmark-ai#readme"><img src="https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/screens/board-desktop.jpg" alt="Where every job stands: a board by stage with status, progress and what changed since yesterday"></a><br><sub><b>Job board:</b> every home by stage, and what changed since yesterday</sub></td>
+  </tr>
+</table>
+
+**Highlights:** 11-check Coordinator agent as a pure, tested function · supervisor team with a Critic that rejects and retries plans · fact guard on every model rewrite · "since yesterday" diff computed by code · Slack bot with an audit log and two locks before any send · Google and Slack OAuth sign-in with an allowlist · bearer-token automation API · HMAC-signed webhooks with retries, plus n8n templates · GitHub Actions cron for the 8:00 brief · nonce CSP and CSRF tokens · 150+ tests, including 300 random-portfolio property tests · deployed on Render
+
+**Tech stack:** TypeScript · Node 20 · Python · Flask · gunicorn · Slack API · Google OAuth · n8n · HMAC webhooks · REST · GitHub Actions · CodeQL · Dependabot · Render · PWA
 
 ### [Human-in-the-Loop Triage](https://github.com/saltylvn/human-in-the-loop-triage)
 
@@ -101,12 +128,14 @@ A solution design for an IT delivery team: a PM Bot orchestrator and six special
 
 **AI agents:** Claude Code · Cursor · Grok
 
-**AI and automation:** Python · FastAPI · Google Gemini · n8n · LLM evals · prompt-injection defense
+**Agent design:** multi-agent orchestration (supervisor, critic, specialists) · human approval gates · fact guards · property-based evals
 
-**APIs and integrations:** HubSpot · Slack · GitHub · RDAP · OAuth 2.0 · signed webhooks · REST
+**AI and automation:** TypeScript · Node · Python · Flask · FastAPI · Google Gemini · n8n · LLM evals · prompt-injection defense
+
+**APIs and integrations:** HubSpot · Slack · GitHub · Google OAuth · RDAP · OAuth 2.0 · signed webhooks · REST
 
 **Full-stack:** Next.js 16 · React 19 · TypeScript · Tailwind CSS · Supabase (Postgres, auth, row-level security) · Zod · Vitest
 
-**Delivery:** GitHub Actions · CodeQL · Dependabot · Docker · Vercel
+**Delivery:** GitHub Actions · CodeQL · Dependabot · Docker · Vercel · Render
 
 **Diagrams and docs:** Mermaid · architecture decision records

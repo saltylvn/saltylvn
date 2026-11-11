@@ -42,14 +42,11 @@ An AI workflow that triages a company's contact form across Gemini, RDAP, HubSpo
 
 An iPhone-first grocery price book, meal planner and recipe box that a couple uses every day. It plans the week, builds the grocery list with an estimated cost, and compares prices across stores. Scan a receipt and AI logs a whole trip's prices at once.
 
-<table>
-  <tr>
-    <td width="50%"><a href="https://github.com/saltylvn/dialed-kitchen#readme"><img src="https://github.com/saltylvn/dialed-kitchen/raw/main/docs/images/dialed-kitchen-overview.png" alt="Dialed Kitchen overview: a meal planner, recipe box and grocery list, with its engineering areas, architecture, tech stack and the Plan screen on an iPhone"></a><br><sub><b>Overview:</b> engineering areas, architecture and the Plan screen</sub></td>
-    <td width="50%"><a href="https://github.com/saltylvn/dialed-kitchen#readme"><img src="https://github.com/saltylvn/dialed-kitchen/raw/main/docs/images/dialed-kitchen-grocery.png" alt="The grocery list built from the meal plan, synced with In stock, with best price, cheapest store and price trend per item"></a><br><sub><b>Grocery and price book:</b> best price, cheapest store and trend per item</sub></td>
-  </tr>
-</table>
+[![Dialed Kitchen overview: an iPhone app that compares six stores, reads receipts with AI, and plans the week, with six engineering areas (multi-tenant Postgres, application security, production AI, data correctness, testing, delivery), the request flow and the tech stack](https://github.com/saltylvn/dialed-kitchen/raw/main/docs/images/dialed-kitchen-overview.png)](https://github.com/saltylvn/dialed-kitchen)
 
-**Highlights:** Gemini reads receipts and recipe photos and estimates nutrition · price book compares stores by unit price · invite-only sign-up with a waitlist, admin approval and hashed invite codes · row-level security on every table · SSRF-safe recipe link import · 422 tests, many against real Postgres · 48 decision records · 63 pull requests
+[![Four real screens: the Grocery tab with its Price book button and list, the price book comparing stores, one item's latest price at every store with its trend, and the week's meal plan with calories and this week's groceries](https://github.com/saltylvn/dialed-kitchen/raw/main/docs/images/dialed-kitchen-screens.png)](https://github.com/saltylvn/dialed-kitchen)
+
+**Highlights:** Gemini reads receipts and recipe photos and estimates nutrition · price book compares six stores by unit price · invite-only sign-up with a waitlist, admin approval and hashed invite codes · row-level security on all 16 tables · nonce CSP and SSRF-safe link import · 422 tests, 159 against real Postgres · 48 decision records · 57 merged pull requests
 
 **Tech stack:** Next.js 16 · React 19 · TypeScript · Tailwind CSS · Supabase (Postgres, auth, row-level security) · Google Gemini · Zod · Vitest · PGlite · Vercel · GitHub Actions · CodeQL · Dependabot
 

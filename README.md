@@ -102,7 +102,7 @@ A wellness tracker for weight, workouts and nutrition, now on **v2.0** and in da
 
 ## In progress
 
-- **[LFG-optim](https://github.com/saltylvn/LFG-optim.)**: a local-first platform that shows where a team's time goes and where work gets stuck. A workload radar for open pull requests and review queues, cycle-time analytics from a live GitHub connector, and an SE ops toolkit with agents that draft demo-prep briefs and call summaries but never send. Python 3.12 · FastAPI · httpx · mypy (strict) · ruff · pytest · GitHub Actions
+- **Atlas Flow** (private for now): a local-first platform that shows where a team's time goes and where work gets stuck. A workload radar for open pull requests and review queues, cycle-time analytics from a live GitHub connector, and an SE ops toolkit with agents that draft demo-prep briefs and call summaries but never send. Python 3.12 · FastAPI · httpx · mypy (strict) · ruff · pytest · GitHub Actions
 - **PM Bot** (private for now): a PM Bot orchestrator and six specialist agents for an IT delivery team, with n8n connecting Slack, Jira, ServiceNow, GitHub and Google Workspace.
 
 ---

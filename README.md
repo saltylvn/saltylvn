@@ -57,9 +57,9 @@ I ship everything with [Claude Code](https://claude.com/claude-code) as my daily
 
 ## AI agents and workflows
 
-### Atlas · flagship AI agent orchestration (public repo coming soon)
+### Atlas · public repo coming soon
 
-**A personal chief of staff run by a team of nine agents, and the most complete system I've built.** A Chief of Staff supervisor routes work to eight specialists, each with one job, its own tools and a written list of what it must never do. On a schedule they brief me twice a day, sort my inbox, plan the week, track renewals, condense the news and draft replies. Nothing leaves without me: drafts open in my own Mail or Messages app and I tap Send.
+**A personal chief of staff run by a team of agents.** A Chief of Staff supervisor routes work to eight specialists, each with one job, its own tools and a written list of what it must never do. On a schedule they brief me twice a day, sort my inbox, plan the week, track renewals, condense the news and draft replies. Nothing leaves without me: drafts open in my own Mail or Messages app and I tap Send.
 
 ```mermaid
 flowchart LR
@@ -73,14 +73,11 @@ flowchart LR
   kb[("Postgres full-text<br/>+ pgvector")] --> ask["Ask Atlas<br/>Claude answers with sources"]
 ```
 
-| | |
-|---|---|
-| **Orchestration** | Supervisor (hierarchical) pattern: specialists never call each other; the Chief of Staff routes work and assembles the briefs. A laptop Mission Control shows every agent's status, errors, cost today, Run Now and Pause, and a live map that lights up the orchestration as agents work |
-| **Evals and observability** | An eval suite for each agent (9 in all) scored against labeled cases; CI fails the build if any suite drops below its threshold. Every run leaves a step-by-step trace, and every action lands in an append-only audit trail |
-| **RAG** | **Ask Atlas** answers questions from my own data: hybrid search (Postgres full-text plus 384-dimension pgvector embeddings, fused), a similarity floor set from a live eval, then Claude writes only from the retrieved passages and cites them |
-| **Integrations** | 12 connectors: Gmail (headers only), Google Calendar and iCal, Notion, GitHub, Figma, RSS and news feeds, weather, web push to my iPhone and Siri capture ("Hey Siri, add to Atlas") |
-| **Safety** | Outbound kill switch, human approval on anything that leaves, Zod validation at every boundary, SSRF-safe fetching, Google sign-in with MFA, full data export |
-| **Data and quality** | 31 tables, all with row-level security, 16 versioned migrations, 480+ tests, lint and type check in CI, and a demo mode with fictional data. 60 merged pull requests |
+- **Orchestration:** a supervisor (hierarchical) pattern where specialists never call each other. A laptop Mission Control shows each agent's status, errors and cost, with Run Now, Pause and a live map of the orchestration as agents work.
+- **Evals and observability:** an eval suite for each agent (9 in all) scored against labeled cases, and CI fails the build if one drops below its threshold. Every run leaves a step-by-step trace, and every action lands in an append-only audit trail.
+- **RAG:** Ask Atlas answers questions from my own data with hybrid search (Postgres full-text plus pgvector embeddings, fused) and a similarity floor set from a live eval; Claude writes only from the retrieved passages and cites them.
+- **Integrations and safety:** 12 connectors (Gmail headers only, Google Calendar and iCal, Notion, GitHub, Figma, RSS and news feeds, web push, Siri capture), an outbound kill switch, Zod validation at every boundary, SSRF-safe fetching, and Google sign-in with MFA.
+- **Data and quality:** 31 tables, all with row-level security, 16 versioned migrations, 480+ tests, and 60 merged pull requests.
 
 `Next.js 16` `React 19` `TypeScript` `Supabase (Postgres, Auth, RLS)` `pgvector` `Claude (Anthropic SDK)` `Gemini` `Zod` `imapflow` `web-push` `Vercel cron` `Vitest` `GitHub Actions`
 

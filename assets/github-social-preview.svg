@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2560" height="1280" viewBox="0 0 1280 640">
+<style>
+ .serif{font-family:Georgia,"Liberation Serif",Palatino,serif}
+ .sans{font-family:Arial, Helvetica, sans-serif}
+ .kick{font-family:Arial, Helvetica, sans-serif;font-size:11.5px;font-weight:700;letter-spacing:0.07em}
+</style>
+<rect width="1280" height="640" fill="#f3f0e8"/>
+<text x="64" y="76" class="kick" fill="#5c564c">GITHUB.COM/SALTYLVN</text>
+<text x="64" y="138" class="serif" font-size="58" fill="#221f1a">Tyler Clark</text>
+<text x="64" y="182" class="sans" font-size="23" fill="#3a342c">AI Solutions Engineer · multi-agent systems, MCP and API integrations, workflow automation</text>
+<text x="64" y="214" class="sans" font-size="18" fill="#5c564c">I build AI agents that do the busywork and then wait for a person to click Approve.</text>
+<rect x="64.0" y="248" width="219.2" height="214" rx="12" fill="#2c3d86"/>
+<text x="82.0" y="280" class="kick" fill="#c9d2f2">AI AGENT ORCHESTRATION</text>
+<text x="82.0" y="314" class="sans" font-size="24" font-weight="700" fill="#ffffff">Atlas</text>
+<text x="82.0" y="346" class="sans" font-size="15" fill="#e7ebf6">A supervisor agent routes</text>
+<text x="82.0" y="368" class="sans" font-size="15" fill="#e7ebf6">work to 8 specialists,</text>
+<text x="82.0" y="390" class="sans" font-size="15" fill="#e7ebf6">with RAG over my data.</text>
+<text x="82.0" y="438" class="sans" font-size="14" font-weight="700" fill="#ffffff">9 agents · 480+ tests</text>
+<rect x="297.2" y="248" width="219.2" height="214" rx="12" fill="#fffdf9" stroke="#9b2832" stroke-width="1.5"/>
+<text x="315.2" y="280" class="kick" fill="#9b2832">AI AGENT TEAM</text>
+<text x="315.2" y="314" class="sans" font-size="24" font-weight="700" fill="#221f1a">Benchmark</text>
+<text x="315.2" y="346" class="sans" font-size="15" fill="#3a342c">Agents check every job</text>
+<text x="315.2" y="368" class="sans" font-size="15" fill="#3a342c">and draft the follow-ups;</text>
+<text x="315.2" y="390" class="sans" font-size="15" fill="#3a342c">a person approves each.</text>
+<text x="315.2" y="438" class="sans" font-size="14" font-weight="700" fill="#221f1a">157 tests · live demo</text>
+<rect x="530.4" y="248" width="219.2" height="214" rx="12" fill="#fffdf9" stroke="#9b2832" stroke-width="1.5"/>
+<text x="548.4" y="280" class="kick" fill="#9b2832">HUMAN-IN-THE-LOOP</text>
+<text x="548.4" y="314" class="sans" font-size="24" font-weight="700" fill="#221f1a">Handoff Triage</text>
+<text x="548.4" y="346" class="sans" font-size="15" fill="#3a342c">Gemini, HubSpot OAuth</text>
+<text x="548.4" y="368" class="sans" font-size="15" fill="#3a342c">and Slack approvals,</text>
+<text x="548.4" y="390" class="sans" font-size="15" fill="#3a342c">with evals.</text>
+<text x="548.4" y="438" class="sans" font-size="14" font-weight="700" fill="#221f1a">97% correct on evals</text>
+<rect x="763.6" y="248" width="219.2" height="214" rx="12" fill="#fffdf9" stroke="#1b754e" stroke-width="1.5"/>
+<text x="781.6" y="280" class="kick" fill="#1b754e">FULL STACK + AI AGENT</text>
+<text x="781.6" y="314" class="sans" font-size="24" font-weight="700" fill="#221f1a">DEVELOP</text>
+<text x="781.6" y="346" class="sans" font-size="15" fill="#3a342c">Wellness app with an AI</text>
+<text x="781.6" y="368" class="sans" font-size="15" fill="#3a342c">coach agent on a</text>
+<text x="781.6" y="390" class="sans" font-size="15" fill="#3a342c">Raspberry Pi 5.</text>
+<text x="781.6" y="438" class="sans" font-size="14" font-weight="700" fill="#221f1a">421 tests · daily use</text>
+<rect x="996.8" y="248" width="219.2" height="214" rx="12" fill="#fffdf9" stroke="#1b754e" stroke-width="1.5"/>
+<text x="1014.8" y="280" class="kick" fill="#1b754e">FULL STACK + AI</text>
+<text x="1014.8" y="314" class="sans" font-size="24" font-weight="700" fill="#221f1a">Dialed Kitchen</text>
+<text x="1014.8" y="346" class="sans" font-size="15" fill="#3a342c">Postgres price book and</text>
+<text x="1014.8" y="368" class="sans" font-size="15" fill="#3a342c">meal planner; AI reads</text>
+<text x="1014.8" y="390" class="sans" font-size="15" fill="#3a342c">receipts.</text>
+<text x="1014.8" y="438" class="sans" font-size="14" font-weight="700" fill="#221f1a">422 tests · daily use</text>
+<rect x="64" y="486" width="770" height="64" rx="12" fill="#fffdf9" stroke="#d2c8b8"/>
+<g class="sans" font-size="19" fill="#221f1a">
+<text x="90" y="526"><tspan font-weight="700">5</tspan> AI projects</text>
+<text x="232" y="526"><tspan font-weight="700">270+</tspan> merged PRs</text>
+<text x="418" y="526"><tspan font-weight="700">1,500+</tspan> tests</text>
+<text x="556" y="526"><tspan font-weight="700">3</tspan> live demos</text>
+</g>
+<rect x="852" y="486" width="364" height="64" rx="32" fill="#221f1a"/>
+<text x="1034" y="525" text-anchor="middle" class="sans" font-size="19" font-weight="700" fill="#fffdf9">See the code and live demos  &#8594;</text>
+<text x="64" y="594" class="sans" font-size="15.5" fill="#5c564c">TypeScript · Python · Next.js · Postgres + RLS · pgvector · Supabase · Claude · Gemini · Slack · HubSpot · Gmail · Notion · n8n · MCP · Vercel</text>
+</svg>

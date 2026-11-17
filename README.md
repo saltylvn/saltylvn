@@ -10,8 +10,8 @@ I ship everything with [Claude Code](https://claude.com/claude-code) as my daily
 
 | At a glance | |
 |---|---|
-| **Shipped and public** | 4 production projects, 3 with live demos, 2 in daily use by real people |
-| **Engineering volume** | 200+ merged pull requests and 1,000+ automated tests across the public repos, CI on every change |
+| **Shipped** | 5 AI projects: a 9-agent orchestration system (Atlas, public repo coming soon) plus 4 public projects, 3 with live demos, 2 in daily use by real people |
+| **Engineering volume** | 270+ merged pull requests and 1,500+ automated tests, CI on every change |
 | **AI in production** | Multi-agent orchestration (supervisor and specialists, a critic loop), evals that gate CI, run tracing, held-out test sets, fact guards, prompt-injection defense, model racing and fallbacks |
 | **Integrations built** | HubSpot (OAuth 2.0), Slack (bot and signed approvals), Gmail, Google Calendar and Google OAuth, Notion, GitHub, Figma, Gemini, Claude, OpenAI, RDAP, RSS, n8n, signed webhooks, REST APIs, and MCP servers in my daily workflow |
 | **Data and security** | Postgres row-level security tested against a real database, least-privilege database roles, nonce CSP, SSRF-safe fetching, audit logs |
@@ -56,6 +56,33 @@ I ship everything with [Claude Code](https://claude.com/claude-code) as my daily
 ---
 
 ## AI agents and workflows
+
+### Atlas · flagship AI agent orchestration (public repo coming soon)
+
+**A personal chief of staff run by a team of nine agents, and the most complete system I've built.** A Chief of Staff supervisor routes work to eight specialists, each with one job, its own tools and a written list of what it must never do. On a schedule they brief me twice a day, sort my inbox, plan the week, track renewals, condense the news and draft replies. Nothing leaves without me: drafts open in my own Mail or Messages app and I tap Send.
+
+```mermaid
+flowchart LR
+  cron["Vercel cron<br/>briefs and hourly sync"] --> cos["Chief of Staff<br/>supervisor"]
+  src["Gmail · Google Calendar · Notion<br/>GitHub · Figma · RSS feeds"] --> sp
+  cos --> sp["8 specialist agents<br/>one job each"]
+  sp --> q["Approval queue"]
+  q --> you(("I approve"))
+  you --> out["Mail · Messages · web push"]
+  sp -.-> tr[("Run traces<br/>and audit log")]
+  kb[("Postgres full-text<br/>+ pgvector")] --> ask["Ask Atlas<br/>Claude answers with sources"]
+```
+
+| | |
+|---|---|
+| **Orchestration** | Supervisor (hierarchical) pattern: specialists never call each other; the Chief of Staff routes work and assembles the briefs. A laptop Mission Control shows every agent's status, errors, cost today, Run Now and Pause, and a live map that lights up the orchestration as agents work |
+| **Evals and observability** | An eval suite for each agent (9 in all) scored against labeled cases; CI fails the build if any suite drops below its threshold. Every run leaves a step-by-step trace, and every action lands in an append-only audit trail |
+| **RAG** | **Ask Atlas** answers questions from my own data: hybrid search (Postgres full-text plus 384-dimension pgvector embeddings, fused), a similarity floor set from a live eval, then Claude writes only from the retrieved passages and cites them |
+| **Integrations** | 12 connectors: Gmail (headers only), Google Calendar and iCal, Notion, GitHub, Figma, RSS and news feeds, weather, web push to my iPhone and Siri capture ("Hey Siri, add to Atlas") |
+| **Safety** | Outbound kill switch, human approval on anything that leaves, Zod validation at every boundary, SSRF-safe fetching, Google sign-in with MFA, full data export |
+| **Data and quality** | 31 tables, all with row-level security, 16 versioned migrations, 480+ tests, lint and type check in CI, and a demo mode with fictional data. 60 merged pull requests |
+
+`Next.js 16` `React 19` `TypeScript` `Supabase (Postgres, Auth, RLS)` `pgvector` `Claude (Anthropic SDK)` `Gemini` `Zod` `imapflow` `web-push` `Vercel cron` `Vitest` `GitHub Actions`
 
 ### [Benchmark](https://github.com/saltylvn/benchmark-ai) · [live demo](https://benchmark-qypb.onrender.com)
 
@@ -141,9 +168,8 @@ I ship everything with [Claude Code](https://claude.com/claude-code) as my daily
 
 ---
 
-## Private work (happy to walk through it)
+## Also private (happy to walk through it)
 
-- **Atlas:** a personal chief of staff run by a team of agents with one job each, in a supervisor (hierarchical) pattern: a Chief of Staff routes work to eight specialists that brief me twice a day, sort Gmail by rules (headers only), plan the week, track renewals and condense the news. Each agent has its own eval suite (nine in all), and CI fails the build if any suite drops below its threshold; every run leaves a step-by-step trace. **Ask Atlas** is a RAG feature with hybrid search (Postgres full-text plus pgvector embeddings, fused) where Claude answers only from the retrieved passages, with sources. A laptop Mission Control shows every agent's status, cost, errors and a live map of the orchestration. Nothing leaves without me: drafts open in my own Mail or Messages app. Connected to Gmail, Google Calendar, Notion, GitHub, Figma and RSS feeds. Next.js, Supabase, pgvector, Claude, Gemini, web push, Siri capture, Vercel. 60 merged pull requests.
 - **Raspberry Pi 5 home server:** Pi-hole ad blocking plus the DEVELOP coach agent above. Swappable LLM interface, six eval scenarios including a prompt-injection attempt (first-try pass rate from 50% to 100% over four rounds), 89 tests, and a systemd sandbox that scores 1.1 on `systemd-analyze security`.
 
 ---

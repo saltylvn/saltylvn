@@ -1,20 +1,36 @@
 # Hi, I'm Tyler Clark 👋
 
-**AI Engineer · AI agents, workflow automation and API integrations · Solutions engineering background**
+**AI Solutions Engineer | Multi-Agent Orchestration · MCP & API Integrations · Workflow Automation | Shipping with Claude Code | Sales Veteran 10 Yrs**
 
-I build AI systems that do real work inside real tools, and I make sure a person stays in control of anything that matters. I design the agents, wire them into the systems a team already uses (Slack, HubSpot, Gmail, Google, Postgres), and ship them as tested, deployed software. Before engineering I led sales teams and worked in technical support, so I start with the people who have the problem, scope it with numbers, and explain the trade-offs to both business and technical stakeholders.
+I spent 10 years in sales, 7 of them leading teams, so I know where a business loses hours to manual work. Now I build the AI systems that take that work away: multi-agent systems where specialist agents report to a supervisor, integrations that plug agents into the tools a team already uses (Slack, HubSpot, Gmail, Google, Notion, Postgres), and automations backed by SQL and a real data model, built to save measurable time. A person stays in control of anything that matters.
 
-I build hands-on with AI coding agents ([Claude Code](https://claude.com/claude-code) daily, plus Cursor and Grok) and own the product, architecture and security decisions myself.
+What I bring that most builders don't: a decade across the table from customers and executives. I scope the real problem before I build, and I can explain the solution to the people who sign off on it.
+
+I ship everything with [Claude Code](https://claude.com/claude-code) as my daily workflow (plus Cursor and Grok), and I own the product, architecture and security decisions myself.
 
 | At a glance | |
 |---|---|
 | **Shipped and public** | 4 production projects, 3 with live demos, 2 in daily use by real people |
 | **Engineering volume** | 200+ merged pull requests and 1,000+ automated tests across the public repos, CI on every change |
-| **AI in production** | Multi-agent orchestration, a supervisor with a critic loop, evals with held-out data, fact guards, prompt-injection defense, model racing and fallbacks |
-| **Integrations built** | HubSpot (OAuth 2.0), Slack (bot and signed approvals), Google OAuth and Gmail, Gemini, Claude, OpenAI, RDAP, RSS, n8n, signed webhooks, REST APIs |
+| **AI in production** | Multi-agent orchestration (supervisor and specialists, a critic loop), evals that gate CI, run tracing, held-out test sets, fact guards, prompt-injection defense, model racing and fallbacks |
+| **Integrations built** | HubSpot (OAuth 2.0), Slack (bot and signed approvals), Gmail, Google Calendar and Google OAuth, Notion, GitHub, Figma, Gemini, Claude, OpenAI, RDAP, RSS, n8n, signed webhooks, REST APIs, and MCP servers in my daily workflow |
 | **Data and security** | Postgres row-level security tested against a real database, least-privilege database roles, nonce CSP, SSRF-safe fetching, audit logs |
 
 **Try them:** [Benchmark](https://benchmark-qypb.onrender.com) · [Dialed Kitchen](https://dialed-kitchen.vercel.app) · [DEVELOP](https://wellness-tracker-virid.vercel.app) (each has a one-tap demo, no sign-up)
+
+---
+
+## Roles I'm built for
+
+| Role (also called) | What I bring | See it in |
+|---|---|---|
+| **AI Engineer** (Applied AI, LLM Engineer) | Production AI features with structured output, validation, evals and cost limits | [Handoff Triage](https://github.com/saltylvn/handoff-triage), [DEVELOP](https://github.com/saltylvn/wellness-tracker) |
+| **AI + Automation Engineer** (Internal AI Engineer) | Automations that save measurable time, backed by SQL and a real data model | [Benchmark](https://github.com/saltylvn/benchmark-ai), [Dialed Kitchen](https://github.com/saltylvn/dialed-kitchen) |
+| **AI Workflow Engineer** (AI Agent Engineer, Agentic AI Engineer) | Supervisor and specialist agents with approval gates, guards and traces | [Benchmark](https://github.com/saltylvn/benchmark-ai), Atlas (private) |
+| **Software Engineer** (Full-stack, Product Engineer) | Next.js, TypeScript, Python and Postgres apps in daily use, with 1,000+ tests and CI on every change | [Dialed Kitchen](https://github.com/saltylvn/dialed-kitchen), [DEVELOP](https://github.com/saltylvn/wellness-tracker) |
+| **Forward Deployed Engineer** (Agent Deployment Engineer) | Scoping a customer's real problem, then building and deploying the agent into their tools | [Benchmark](https://github.com/saltylvn/benchmark-ai), [Handoff Triage](https://github.com/saltylvn/handoff-triage) |
+| **Solutions Engineer** (AI Solutions, Implementation) | 10 years with customers and executives, plus the integrations to back it up: OAuth, webhooks, CRM and Slack | [Handoff Triage](https://github.com/saltylvn/handoff-triage) |
+| **GTM Engineer** (Revenue / RevOps Engineer) | CRM automation, enrichment and routing with a person approving the risky calls | [Handoff Triage](https://github.com/saltylvn/handoff-triage) (HubSpot, RDAP, Slack) |
 
 ---
 
@@ -127,7 +143,7 @@ I build hands-on with AI coding agents ([Claude Code](https://claude.com/claude-
 
 ## Private work (happy to walk through it)
 
-- **Atlas:** a personal chief of staff run by a team of agents with one job each: a Chief of Staff supervisor and eight specialists that brief me twice a day, sort Gmail by rules (headers only), plan the week, track renewals and condense the news. **Ask Atlas** is a RAG feature with hybrid search (Postgres full-text plus pgvector embeddings, fused) where Claude answers only from the retrieved passages, with sources. A laptop Mission Control shows every agent's status, cost, errors and a live map of the orchestration. Nothing leaves without me: drafts open in my own Mail or Messages app. Next.js, Supabase, pgvector, Claude, Gemini, Gmail API, web push, Siri capture, Vercel.
+- **Atlas:** a personal chief of staff run by a team of agents with one job each, in a supervisor (hierarchical) pattern: a Chief of Staff routes work to eight specialists that brief me twice a day, sort Gmail by rules (headers only), plan the week, track renewals and condense the news. Each agent has its own eval suite (nine in all), and CI fails the build if any suite drops below its threshold; every run leaves a step-by-step trace. **Ask Atlas** is a RAG feature with hybrid search (Postgres full-text plus pgvector embeddings, fused) where Claude answers only from the retrieved passages, with sources. A laptop Mission Control shows every agent's status, cost, errors and a live map of the orchestration. Nothing leaves without me: drafts open in my own Mail or Messages app. Connected to Gmail, Google Calendar, Notion, GitHub, Figma and RSS feeds. Next.js, Supabase, pgvector, Claude, Gemini, web push, Siri capture, Vercel. 60 merged pull requests.
 - **Raspberry Pi 5 home server:** Pi-hole ad blocking plus the DEVELOP coach agent above. Swappable LLM interface, six eval scenarios including a prompt-injection attempt (first-try pass rate from 50% to 100% over four rounds), 89 tests, and a systemd sandbox that scores 1.1 on `systemd-analyze security`.
 
 ---
@@ -136,7 +152,8 @@ I build hands-on with AI coding agents ([Claude Code](https://claude.com/claude-
 
 - **Code decides, models phrase.** Dates, dollars, routing and permissions are deterministic and tested; a model writes or classifies inside guard rails, and its output is validated like any other untrusted input.
 - **Agents draft, a person approves.** My agent systems never send on their own: outbound actions wait in an approval queue and land in an audit trail.
-- **Measure it.** Held-out evals, property tests, latency numbers and cost per message, reported with their caveats.
+- **Measure it.** Evals that gate CI, held-out test sets, property tests, run traces, latency numbers and cost per message, reported with their caveats.
+- **Scope with numbers.** Start from a vague business problem, agree what success looks like (hours saved, steps removed, cost per run), then build to that.
 - **Rules live where they can't be bypassed.** Row-level security, triggers and single-purpose database roles, tested against a real Postgres.
 - **Ship small and documented.** A branch and pull request per change, CI that blocks merging, preview deploys, decision records, and a living spec (`CLAUDE.md`) updated in the same pull request as the code.
 
@@ -144,9 +161,9 @@ I build hands-on with AI coding agents ([Claude Code](https://claude.com/claude-
 
 ## Skills
 
-**AI engineering:** multi-agent orchestration (supervisor, critic, specialists) · human-in-the-loop approvals · RAG (hybrid full-text and pgvector search) · structured output with JSON schema · evals and property-based testing · fact guards and output checkers · prompt-injection defense · model racing and fallbacks · Google Gemini · Claude · OpenAI
+**AI engineering:** multi-agent orchestration (supervisor, critic, specialists) · human-in-the-loop approvals · RAG (hybrid full-text and pgvector search) · structured output with JSON schema · evals and observability (CI-gated eval suites, run traces) · property-based testing · fact guards and output checkers · prompt-injection defense · model racing and fallbacks · Google Gemini · Claude · OpenAI
 
-**Integrations and APIs:** HubSpot · Slack (bot, interactivity, webhooks) · Gmail API · Google OAuth (PKCE) · OAuth 2.0 with token refresh · HMAC-signed webhooks · REST APIs · bearer-token automation APIs · RDAP · RSS · n8n
+**Integrations and APIs:** MCP · HubSpot · Slack (bot, interactivity, webhooks) · Gmail · Google Calendar · Google OAuth (PKCE) · Notion · GitHub · Figma · OAuth 2.0 with token refresh · HMAC-signed webhooks · REST APIs · bearer-token automation APIs · RDAP · RSS · n8n
 
 **Back end and data:** Python · FastAPI · Flask · Pydantic · TypeScript · Node · PostgreSQL (row-level security, triggers, `SECURITY DEFINER` functions, migrations) · Supabase · SQLite · pgvector
 
@@ -156,4 +173,4 @@ I build hands-on with AI coding agents ([Claude Code](https://claude.com/claude-
 
 **Delivery:** GitHub Actions · CodeQL · Dependabot · Docker · Vercel · Render · Raspberry Pi and systemd · Vitest · pytest · mypy (strict) · ruff · ESLint
 
-**Working with AI coding agents:** Claude Code · Cursor · Grok
+**Shipping with AI coding agents:** Claude Code (daily) · Cursor · Grok

@@ -1,123 +1,159 @@
 # Hi, I'm Tyler Clark 👋
 
-**Solutions Engineering | Building AI Agents & Workflows | Automation, APIs & Integrations | Strategic Tech Support Analyst | Former Sales Leader & Business Partner**
+**AI Engineer · AI agents, workflow automation and API integrations · Solutions engineering background**
 
-I turn business problems into working software: AI agent teams, workflows with a person in the loop, API integrations and full-stack apps, from idea to deployed product. I build hands-on with AI coding agents ([Claude Code](https://claude.com/claude-code), Cursor, Grok) and own the product and architecture decisions myself. Years in sales leadership and technical support shape how I work: find the real problem with the people who have it, translate between business and technical teams, test against real services and devices, and ship in small pull requests with automated tests.
+I build AI systems that do real work inside real tools, and I make sure a person stays in control of anything that matters. I design the agents, wire them into the systems a team already uses (Slack, HubSpot, Gmail, Google, Postgres), and ship them as tested, deployed software. Before engineering I led sales teams and worked in technical support, so I start with the people who have the problem, scope it with numbers, and explain the trade-offs to both business and technical stakeholders.
 
-| What I build | Where to see it |
+I build hands-on with AI coding agents ([Claude Code](https://claude.com/claude-code) daily, plus Cursor and Grok) and own the product, architecture and security decisions myself.
+
+| At a glance | |
 |---|---|
-| **AI agent teams** | [Benchmark](https://github.com/saltylvn/benchmark-ai): agents check every construction job each morning and draft the follow-ups; a person approves each one |
-| **AI workflows with a person in the loop** | [Handoff Triage](https://github.com/saltylvn/handoff-triage): Gemini, HubSpot and Slack, with approvals, evals and an audit log |
-| **API integrations** | OAuth 2.0 with token refresh, HMAC-signed webhooks, Slack bots, retries with backoff, idempotent writes |
-| **Full-stack apps in daily use** | [Dialed Kitchen](https://github.com/saltylvn/dialed-kitchen) and [DEVELOP](https://github.com/saltylvn/wellness-tracker): Next.js, Supabase Postgres with row-level security, Gemini |
+| **Shipped and public** | 4 production projects, 3 with live demos, 2 in daily use by real people |
+| **Engineering volume** | 200+ merged pull requests and 1,000+ automated tests across the public repos, CI on every change |
+| **AI in production** | Multi-agent orchestration, a supervisor with a critic loop, evals with held-out data, fact guards, prompt-injection defense, model racing and fallbacks |
+| **Integrations built** | HubSpot (OAuth 2.0), Slack (bot and signed approvals), Google OAuth and Gmail, Gemini, Claude, OpenAI, RDAP, RSS, n8n, signed webhooks, REST APIs |
+| **Data and security** | Postgres row-level security tested against a real database, least-privilege database roles, nonce CSP, SSRF-safe fetching, audit logs |
 
-**Try them:** [Benchmark demo](https://benchmark-qypb.onrender.com) · [Dialed Kitchen demo](https://dialed-kitchen.vercel.app) · [DEVELOP demo](https://wellness-tracker-virid.vercel.app) (no sign-up for any of them)
+**Try them:** [Benchmark](https://benchmark-qypb.onrender.com) · [Dialed Kitchen](https://dialed-kitchen.vercel.app) · [DEVELOP](https://wellness-tracker-virid.vercel.app) (each has a one-tap demo, no sign-up)
 
 ---
 
-## AI agents, workflows and integrations
+## For engineers: where to look in the code
 
-### [Benchmark](https://github.com/saltylvn/benchmark-ai) · [live demo](https://benchmark-qypb.onrender.com) (tap **View the demo**; the free host takes about a minute to wake)
+| What you want to judge | Read this |
+|---|---|
+| Agent design: one pure, tested function that runs 11 checks | [benchmark-ai/src/agents/coordinator.ts](https://github.com/saltylvn/benchmark-ai/blob/main/src/agents/coordinator.ts) |
+| Supervisor, specialists and a Critic that rejects and retries plans | [benchmark-ai/src/orchestrator/supervisor.ts](https://github.com/saltylvn/benchmark-ai/blob/main/src/orchestrator/supervisor.ts) |
+| A guard that stops a model from changing any fact in a draft | [benchmark-ai/src/providers/guard.ts](https://github.com/saltylvn/benchmark-ai/blob/main/src/providers/guard.ts) |
+| Property tests on 300 random portfolios (they found two real bugs) | [benchmark-ai/tests/coordinator.properties.test.ts](https://github.com/saltylvn/benchmark-ai/blob/main/tests/coordinator.properties.test.ts) |
+| OAuth 2.0 with token refresh and encrypted tokens | [handoff-triage/src/triage/adapters/hubspot.py](https://github.com/saltylvn/handoff-triage/blob/main/src/triage/adapters/hubspot.py) |
+| HMAC-signed webhooks and approval clicks | [handoff-triage/src/triage/infra/signature.py](https://github.com/saltylvn/handoff-triage/blob/main/src/triage/infra/signature.py) |
+| Idempotency and crash recovery in five layers | [handoff-triage/src/triage/pipeline.py](https://github.com/saltylvn/handoff-triage/blob/main/src/triage/pipeline.py) · [decision 0003](https://github.com/saltylvn/handoff-triage/blob/main/docs/decisions/0003-layered-idempotency.md) |
+| Retries, backoff and rate limits | [handoff-triage/src/triage/infra/retry.py](https://github.com/saltylvn/handoff-triage/blob/main/src/triage/infra/retry.py) |
+| Multi-tenant Postgres: row-level security, composite foreign keys, hashed invite tokens | [dialed-kitchen/supabase/migrations/…_households.sql](https://github.com/saltylvn/dialed-kitchen/blob/main/supabase/migrations/20261023000000_households.sql) |
+| Tests that sign in as different users on real Postgres and try to break isolation | [dialed-kitchen/supabase/tests](https://github.com/saltylvn/dialed-kitchen/tree/main/supabase/tests) |
+| SSRF-safe fetching, with the address check inside the DNS lookup | [dialed-kitchen/lib/server/safeFetch.ts](https://github.com/saltylvn/dialed-kitchen/blob/main/lib/server/safeFetch.ts) |
+| Structured AI output: JSON schema, Zod validation, injection-aware prompt | [dialed-kitchen/lib/ai/receiptFromImage.ts](https://github.com/saltylvn/dialed-kitchen/blob/main/lib/ai/receiptFromImage.ts) |
+| Hedged model racing that took AI replies from 12.5 s to about 2 s | [wellness-tracker/lib/ai/modelChain.ts](https://github.com/saltylvn/wellness-tracker/blob/main/lib/ai/modelChain.ts) |
+| Least-privilege database logins for an agent (one function each) | [wellness-tracker/supabase/migrations/…_coach_access.sql](https://github.com/saltylvn/wellness-tracker/blob/main/supabase/migrations/20261116000000_coach_access.sql) |
 
-An AI agent team for construction project managers in every sector. Every weekday at 6:00 a Coordinator agent runs 11 checks across every job, trade and PM (sub insurance, permits, long-lead orders, buyer selections, loan draws, closing dates, workload), then drafts the follow-ups: a Slack nudge, a vendor order, a construction-loan draw request to the lender. A named person approves each one in a phone-first app (iPhone, iPad and laptop, in a paper-and-ink light mode and a navy dark mode) before anything goes out. Code computes every date and dollar; a language model may only reword, behind a guard that rejects any change to a fact.
+---
 
-[![Benchmark overview: five layers from sources to TypeScript agents (Coordinator with 11 checks, supervisor team, critic), a versioned snapshot and fact guard, the Flask service with its approval queue, REST API and security, then a named PM approves before Slack, email drafts and signed webhooks to n8n; the app on iPad and iPhone; 157 tests and 300 property-test portfolios](https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/benchmark-linkedin.jpg)](https://github.com/saltylvn/benchmark-ai)
+## AI agents and workflows
+
+### [Benchmark](https://github.com/saltylvn/benchmark-ai) · [live demo](https://benchmark-qypb.onrender.com)
+
+**An AI agent team for construction project managers.** Every weekday at 6:00 a Coordinator agent runs 11 checks across every job, trade and PM (sub insurance, permits, long-lead orders, buyer selections, loan draws, closing dates, workload) and drafts the follow-ups: a Slack nudge, a vendor order, a construction-loan draw request to the lender. A named person approves each one in a phone-first app before anything goes out. Code computes every date and dollar; a language model may only reword, behind a guard that rejects any change to a fact.
+
+[![Benchmark overview: sources, TypeScript agents (Coordinator with 11 checks, supervisor team, critic), a versioned snapshot and fact guard, the Flask service with its approval queue, REST API and security, then a named PM approves before Slack, email drafts and signed webhooks; the app on iPad and iPhone; 157 tests and 300 property-test portfolios](https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/benchmark-linkedin.jpg)](https://github.com/saltylvn/benchmark-ai)
 
 <table>
   <tr>
-    <td width="25%" align="center"><img src="https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/screens/landing-phone.jpg" alt="Landing page on a phone"><br><sub>Landing</sub></td>
     <td width="25%" align="center"><img src="https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/screens/today-phone.jpg" alt="Today: 8 things blocked and 16 follow-ups already drafted"><br><sub>Today</sub></td>
     <td width="25%" align="center"><img src="https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/screens/draw-request-phone.jpg" alt="A drafted construction-loan draw request waiting for approval"><br><sub>Loan draw to approve</sub></td>
-    <td width="25%" align="center"><img src="https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/screens/today-phone-dark.jpg" alt="Today in dark mode"><br><sub>Dark mode</sub></td>
+    <td width="50%" align="center"><img src="https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/screens/ipad-queue.jpg" alt="The approval queue on iPad in two columns"><br><sub>Approval queue on iPad</sub></td>
   </tr>
 </table>
 
-<table>
-  <tr>
-    <td width="50%"><a href="https://github.com/saltylvn/benchmark-ai#readme"><img src="https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/screens/ipad-queue.jpg" alt="The approval queue on iPad in two columns"></a><br><sub><b>Approval queue:</b> Approve or Later on every drafted follow-up</sub></td>
-    <td width="50%"><a href="https://github.com/saltylvn/benchmark-ai#readme"><img src="https://github.com/saltylvn/benchmark-ai/raw/main/docs/images/screens/board-desktop.jpg" alt="Where every job stands: a board by stage with status, progress and what changed since yesterday"></a><br><sub><b>Job board:</b> every job by stage, and what changed since yesterday</sub></td>
-  </tr>
-</table>
+- **Architecture:** two layers on purpose. TypeScript agents decide and export one versioned snapshot; a Python Flask service reads it and handles people, sign-in, approvals and integrations. A drift test fails if the UI could show a plan the agents didn't make.
+- **Integrations:** Slack bot with an audit log and two locks before any send · Google and Slack OAuth with an email allowlist · bearer-token automation API · HMAC-signed webhooks with retries and a delivery log · n8n templates that verify the signature · GitHub Actions cron for the 8:00 brief · deployed on Render.
+- **Quality:** 157 tests in TypeScript and Python, 300 random-portfolio property tests, nonce CSP and CSRF tokens, CodeQL and dependency audits in CI.
 
-**Highlights:** Coordinator agent with 11 checks, written as a pure, tested function · supervisor team whose Critic rejects and retries plans · fact guard on every model rewrite · Slack bot with an audit log and two locks before any send · Google and Slack OAuth with an allowlist · bearer-token automation API · HMAC-signed webhooks with retries, plus n8n templates · GitHub Actions cron for the 8:00 brief · nonce CSP and CSRF tokens · CodeQL on every change · 157 tests, including 300 random-portfolio property tests
-
-**Tech stack:** TypeScript · Node 20 · Python · Flask · gunicorn · Slack API · Google OAuth · n8n · HMAC webhooks · REST · GitHub Actions · CodeQL · Dependabot · Render · PWA
+`TypeScript` `Node 20` `Python` `Flask` `gunicorn` `Slack API` `Google OAuth` `OpenAI (optional)` `n8n` `HMAC webhooks` `GitHub Actions` `Render` `PWA`
 
 ### [Handoff Triage](https://github.com/saltylvn/handoff-triage)
 
-An AI workflow that triages a company's contact form across Gemini, RDAP, HubSpot and Slack, and asks a person before anything risky. On 70 held-out synthetic messages it handled **84.3%** alone at **96.6%** correct, sent **4 of 4** sensitive messages to a person, and costs about **$0.33 per 1,000 messages**. It has also run live on HubSpot and Slack test accounts, including a real approval click.
+**A human-in-the-loop workflow that triages a company's contact form across four systems.** Gemini reads each message, RDAP enriches it, HubSpot and Slack get updated, and anything unsure or risky waits for a person. On 70 held-out messages it handled **84.3%** without a person at **96.6%** correct, sent **all 4** sensitive messages to a person, and costs about **$0.33 per 1,000 messages**. It has also run live on HubSpot and Slack test accounts, including a real approval click. It is one LLM step inside a deterministic workflow, on purpose: fixed steps are easier to test, audit and trust.
+
+[![Handoff Triage connected to Gemini, RDAP, HubSpot and Slack, with its six workflow steps, results on 70 held-out messages, a pending Slack approval and the tools it is built with](https://github.com/saltylvn/handoff-triage/raw/main/docs/assets/overview.png)](https://github.com/saltylvn/handoff-triage)
 
 <table>
   <tr>
-    <td width="50%"><a href="https://github.com/saltylvn/handoff-triage#readme"><img src="https://github.com/saltylvn/handoff-triage/raw/main/docs/assets/workflow.png" alt="Automation workflow: receive a signed webhook, classify with Gemini, enrich, route with plain rules, act in HubSpot and Slack, and log each decision; seven rules that send a message to a person"></a><br><sub><b>Workflow:</b> the AI supplies the facts, code decides what happens</sub></td>
-    <td width="50%"><a href="https://github.com/saltylvn/handoff-triage#readme"><img src="https://github.com/saltylvn/handoff-triage/raw/main/docs/assets/integrations-security.png" alt="Integrations: HubSpot OAuth 2.0 in six steps, a signed Slack approval click, a retry budget, and an API log of Gemini, RDAP, HubSpot and Slack calls"></a><br><sub><b>Integrations and APIs:</b> HubSpot OAuth, signed Slack approvals, retries and an API log</sub></td>
-  </tr>
-  <tr>
-    <td width="50%"><a href="https://github.com/saltylvn/handoff-triage#readme"><img src="https://github.com/saltylvn/handoff-triage/raw/main/docs/assets/architecture.png" alt="Architecture: contact form webhook to a FastAPI API, a SQLite queue and log, and a Python worker that calls Gemini, RDAP, HubSpot and Slack"></a><br><sub><b>Architecture:</b> a durable queue separates fast replies from slow work</sub></td>
+    <td width="50%"><a href="https://github.com/saltylvn/handoff-triage#readme"><img src="https://github.com/saltylvn/handoff-triage/raw/main/docs/assets/integrations-security.png" alt="Integrations: HubSpot OAuth 2.0 in six steps, a signed Slack approval click, a retry budget, and an API log of Gemini, RDAP, HubSpot and Slack calls"></a><br><sub><b>Integrations:</b> HubSpot OAuth, signed Slack approvals, retries and an API log</sub></td>
     <td width="50%"><a href="https://github.com/saltylvn/handoff-triage#readme"><img src="https://github.com/saltylvn/handoff-triage/raw/main/docs/assets/reliability.png" alt="Reliability: six failure scenarios such as duplicate webhooks, crashes and lost replies, each handled, and a retry timeline from 503 to 429 to 200"></a><br><sub><b>Reliability:</b> one record and one message, even when things fail</sub></td>
   </tr>
 </table>
 
-**Highlights:** HubSpot OAuth 2.0 with encrypted tokens · HMAC-signed webhooks and approval clicks · five layers against duplicates · append-only audit log · prompt-injection defense · 100-example eval · 83 tests, 95% coverage · Docker
+- **Reliability:** a durable SQLite queue separates fast webhook replies from slow work · five layers against duplicates · retries with backoff that respect rate limits · a one-command failure demo that injects a rate limit, a lost reply, a replayed webhook and a double-clicked approval.
+- **Safety and audit:** HubSpot tokens encrypted at rest · signed webhooks and approval clicks · append-only audit log · LLM output validation and prompt-injection defense · a $250,000 deal is held for approval even at full model confidence.
+- **Quality:** 100-example eval with held-out results · 83 tests at 95% coverage · strict mypy · Docker with a start-up test in CI.
 
-**Tech stack:** Python · FastAPI · Pydantic · httpx · SQLite · Google Gemini · HubSpot API · Slack API · RDAP · Docker · uv · pytest · mypy (strict) · ruff · GitHub Actions
+`Python 3.13` `FastAPI` `Pydantic` `httpx` `SQLite` `Google Gemini` `HubSpot API` `Slack API` `RDAP` `Docker` `uv` `pytest` `mypy (strict)` `ruff` `GitHub Actions`
 
 ---
 
-## Full-stack apps
+## Full-stack apps in daily use
 
-### [Dialed Kitchen](https://github.com/saltylvn/dialed-kitchen) · [live site](https://dialed-kitchen.vercel.app) (tap **Try the demo**)
+### [DEVELOP](https://github.com/saltylvn/wellness-tracker) · [live demo](https://wellness-tracker-virid.vercel.app)
 
-An iPhone-first grocery price book, meal planner and recipe box that a couple uses every day. It plans the week, builds the grocery list with an estimated cost, and compares prices across stores. Scan a receipt and AI logs a whole trip's prices at once.
+**A wellness tracker for weight, workouts and nutrition, with an AI coach agent running on a Raspberry Pi 5 at home.** Log a meal by photo or description and Gemini estimates calories and macros; plan and log lifting and cardio; track weight against a goal. Every morning the Pi agent writes a coaching note, and twice a week it recommends workouts with links from seven allowlisted fitness publishers.
+
+[![DEVELOP in dark mode: the Weight tab, the Coach window and the Fitness tab on iPhone, with the live demo and repository links, four proof numbers and the tech stack, including the Raspberry Pi agent](https://github.com/saltylvn/wellness-tracker/raw/main/docs/linkedin/DEVELOP-project-cover-4x3.png)](https://github.com/saltylvn/wellness-tracker)
+
+<table>
+  <tr>
+    <td width="25%" align="center"><img src="https://github.com/saltylvn/wellness-tracker/raw/main/docs/screens/weight.png" alt="Weight tab: start, current and target weight with a progress bar, a weigh-in chart and the projected goal date"><br><sub>Weight</sub></td>
+    <td width="25%" align="center"><img src="https://github.com/saltylvn/wellness-tracker/raw/main/docs/screens/fitness.png" alt="Fitness tab on a lifting day: two priority lifts with PRs and the day's exercises with logged sets"><br><sub>Fitness</sub></td>
+    <td width="25%" align="center"><img src="https://github.com/saltylvn/wellness-tracker/raw/main/docs/screens/coach.png" alt="The Coach window: today's note with yesterday vs plan, the week so far, today's focus and thumbs up or down"><br><sub>AI coach</sub></td>
+    <td width="25%" align="center"><img src="https://github.com/saltylvn/wellness-tracker/raw/main/docs/screens/nutrition.png" alt="Nutrition tab: food streak, week strip, calorie ring and macro goals"><br><sub>Nutrition</sub></td>
+  </tr>
+</table>
+
+[![DEVELOP architecture: the app (iPhone PWA to Next.js on Vercel with a per-request CSP nonce, Server Components, Server Actions and an AI route, to Supabase Postgres and Auth, and Gemini) and the coach agent (a Raspberry Pi 5 running Python on systemd timers, stats in code, Gemini and a checker, two single-function database logins); CI on both](https://github.com/saltylvn/wellness-tracker/raw/main/docs/linkedin/DEVELOP-architecture.png)](https://github.com/saltylvn/wellness-tracker#how-its-built)
+
+- **The coach agent:** code computes every number and the model only writes the words; a checker rejects any note with a number the code didn't produce, medical advice, links or markup. The model picks articles by number and code inserts the real links, so it never writes a URL. Two database logins that can each call exactly one function, a privacy filter that sends only weekly totals, and a sandboxed systemd service on a hardened Pi (key-only SSH, LAN-only firewall).
+- **AI in the app:** photo and text nutrition estimates with JSON-schema output; hedged model racing took replies from **12.5 s to about 2 s**; a 40-a-day per-person limit taken atomically in Postgres.
+- **Data and security:** row-level security on all 18 tables, 33 versioned migrations written to deploy safely, invite-only sign-up enforced by a Postgres trigger, Google sign-in with PKCE, strict nonce CSP, protected `main`, Actions pinned to commit SHAs.
+- **Quality:** 421 tests, including every database rule on a real Postgres (PGlite), and a performance test that fails if a page needs more than two database round trips. 100+ merged pull requests.
+
+`Next.js 16` `React 19` `TypeScript` `Tailwind CSS v4` `Supabase (Postgres, Auth, RLS)` `Google Gemini` `Python 3.13` `systemd` `Raspberry Pi 5` `Vitest` `PGlite` `pytest` `Vercel` `GitHub Actions` `CodeQL` `Dependabot`
+
+### [Dialed Kitchen](https://github.com/saltylvn/dialed-kitchen) · [live demo](https://dialed-kitchen.vercel.app)
+
+**An iPhone-first grocery price book, meal planner and recipe box that my household uses every day.** It plans the week, builds the grocery list with an estimated cost, and compares prices across six stores by unit price. Scan a receipt and Gemini logs a whole trip's prices at once, after you review them.
 
 [![Dialed Kitchen overview: an iPhone app that compares six stores, reads receipts with AI, and plans the week, with six engineering areas (multi-tenant Postgres, application security, production AI, data correctness, testing, delivery), the request flow and the tech stack](https://github.com/saltylvn/dialed-kitchen/raw/main/docs/images/dialed-kitchen-overview.png)](https://github.com/saltylvn/dialed-kitchen)
 
 [![Four real screens: the Grocery tab with its Price book button and list, the price book comparing stores, one item's latest price at every store with its trend, and the week's meal plan with calories and this week's groceries](https://github.com/saltylvn/dialed-kitchen/raw/main/docs/images/dialed-kitchen-screens.png)](https://github.com/saltylvn/dialed-kitchen)
 
-**Highlights:** Gemini reads receipts and recipe photos and estimates nutrition · price book compares six stores by unit price · invite-only sign-up with a waitlist, admin approval and hashed invite codes · row-level security on all 16 tables · nonce CSP and SSRF-safe link import · 422 tests, 159 against real Postgres · 48 decision records · 57 merged pull requests
+- **Multi-tenant Postgres:** households with row-level security on all 16 tables, composite foreign keys so rows can't point at another household, column-level grants and 60+ check constraints. Prices and best prices are computed from history, never stored.
+- **Security:** invite-only sign-up with a waitlist, admin approval and invite codes stored only as SHA-256 hashes; SSRF-safe recipe import that closes DNS rebinding; nonce CSP; CodeQL and secret scanning.
+- **Production AI:** receipts and recipe photos read by Gemini with a JSON schema, every reply validated with Zod, a free-model fallback chain, and photos stripped of GPS data and never stored.
+- **Quality:** 422 tests, 159 of them on real Postgres signing in as different users · WCAG AA contrast enforced by a test · 48 architecture decision records · 60 merged pull requests.
 
-**Tech stack:** Next.js 16 · React 19 · TypeScript · Tailwind CSS · Supabase (Postgres, auth, row-level security) · Google Gemini · Zod · Vitest · PGlite · Vercel · GitHub Actions · CodeQL · Dependabot
-
-### [DEVELOP](https://github.com/saltylvn/wellness-tracker) · [live demo](https://wellness-tracker-virid.vercel.app) (no sign-up)
-
-A wellness tracker for weight, workouts and nutrition, now on **v2.0** and in daily use. Log a meal by photo or description and AI estimates calories and macros; plan and log lifting and cardio; track weight against a goal with a projected goal date.
-
-[![DEVELOP v2.0: the Weight, Fitness and Nutrition tabs on iPhone, with 339 automated tests, 16 of 16 tables with row-level security, and about 2 second AI photo estimates](https://github.com/saltylvn/wellness-tracker/raw/main/docs/linkedin/DEVELOP-project-cover-4x3.png)](https://github.com/saltylvn/wellness-tracker)
-
-<table>
-  <tr>
-    <td width="33%" align="center"><img src="https://github.com/saltylvn/wellness-tracker/raw/main/docs/screens/weight.png" alt="Weight tab: start, current and target weight with a progress bar, a weigh-in chart and the projected goal date"><br><sub>Weight</sub></td>
-    <td width="33%" align="center"><img src="https://github.com/saltylvn/wellness-tracker/raw/main/docs/screens/fitness.png" alt="Fitness tab on a lifting day: two priority lifts with PRs and the day's exercises with logged sets"><br><sub>Fitness</sub></td>
-    <td width="33%" align="center"><img src="https://github.com/saltylvn/wellness-tracker/raw/main/docs/screens/nutrition.png" alt="Nutrition tab: food streak, week strip, calorie ring and macro goals"><br><sub>Nutrition</sub></td>
-  </tr>
-</table>
-
-[![DEVELOP architecture: iPhone PWA to Next.js on Vercel (proxy with a nonce CSP, Server Components and Server Actions, an AI route) to Supabase Postgres and Auth and Google Gemini, with CI, preview deploys, protected main and Dependabot](https://github.com/saltylvn/wellness-tracker/raw/main/docs/linkedin/DEVELOP-architecture.png)](https://github.com/saltylvn/wellness-tracker#how-its-built)
-
-**Highlights:** AI photo estimates in about 2 seconds (down from 12.5 s) by racing models · Google or username and password sign-in, invite-only, with an admin view · row-level security on all 16 tables (28 policies) · strict CSP · 339 tests, including database rules on real Postgres · protected `main` · one-click demo
-
-**Tech stack:** Next.js 16 · React 19 · TypeScript · Tailwind CSS · Supabase (Postgres, auth, row-level security) · Google Gemini · ZXing · Vitest · Vercel · GitHub Actions · CodeQL · Dependabot
+`Next.js 16` `React 19` `TypeScript (strict)` `Tailwind CSS v4` `Supabase (Postgres, Auth, RLS)` `Google Gemini` `Zod` `Vitest` `PGlite` `Vercel` `GitHub Actions` `CodeQL` `Dependabot`
 
 ---
 
-## In progress
+## Private work (happy to walk through it)
 
-- **PM Bot** (private for now): a PM Bot orchestrator and six specialist agents for an IT delivery team, with n8n connecting Slack, Jira, ServiceNow, GitHub and Google Workspace.
+- **Atlas:** a personal chief of staff run by a team of agents with one job each: a Chief of Staff supervisor and eight specialists that brief me twice a day, sort Gmail by rules (headers only), plan the week, track renewals and condense the news. **Ask Atlas** is a RAG feature with hybrid search (Postgres full-text plus pgvector embeddings, fused) where Claude answers only from the retrieved passages, with sources. A laptop Mission Control shows every agent's status, cost, errors and a live map of the orchestration. Nothing leaves without me: drafts open in my own Mail or Messages app. Next.js, Supabase, pgvector, Claude, Gemini, Gmail API, web push, Siri capture, Vercel.
+- **Raspberry Pi 5 home server:** Pi-hole ad blocking plus the DEVELOP coach agent above. Swappable LLM interface, six eval scenarios including a prompt-injection attempt (first-try pass rate from 50% to 100% over four rounds), 89 tests, and a systemd sandbox that scores 1.1 on `systemd-analyze security`.
 
 ---
 
-## All tools
+## How I work
 
-**AI coding agents:** Claude Code · Cursor · Grok
+- **Code decides, models phrase.** Dates, dollars, routing and permissions are deterministic and tested; a model writes or classifies inside guard rails, and its output is validated like any other untrusted input.
+- **Agents draft, a person approves.** My agent systems never send on their own: outbound actions wait in an approval queue and land in an audit trail.
+- **Measure it.** Held-out evals, property tests, latency numbers and cost per message, reported with their caveats.
+- **Rules live where they can't be bypassed.** Row-level security, triggers and single-purpose database roles, tested against a real Postgres.
+- **Ship small and documented.** A branch and pull request per change, CI that blocks merging, preview deploys, decision records, and a living spec (`CLAUDE.md`) updated in the same pull request as the code.
 
-**Agent design:** multi-agent orchestration (supervisor, critic, specialists) · human approval gates · fact guards · property-based evals
+---
 
-**AI and automation:** Python · FastAPI · Flask · TypeScript · Node · Google Gemini · OpenAI · n8n · LLM evals · prompt-injection defense
+## Skills
 
-**APIs and integrations:** HubSpot · Slack · GitHub · Google OAuth · OAuth 2.0 · RDAP · REST · HMAC-signed webhooks
+**AI engineering:** multi-agent orchestration (supervisor, critic, specialists) · human-in-the-loop approvals · RAG (hybrid full-text and pgvector search) · structured output with JSON schema · evals and property-based testing · fact guards and output checkers · prompt-injection defense · model racing and fallbacks · Google Gemini · Claude · OpenAI
 
-**Full-stack:** Next.js 16 · React 19 · TypeScript · Tailwind CSS · Supabase (Postgres, auth, row-level security) · Zod · Vitest
+**Integrations and APIs:** HubSpot · Slack (bot, interactivity, webhooks) · Gmail API · Google OAuth (PKCE) · OAuth 2.0 with token refresh · HMAC-signed webhooks · REST APIs · bearer-token automation APIs · RDAP · RSS · n8n
 
-**Delivery:** GitHub Actions · CodeQL · Dependabot · Docker · Vercel · Render · gunicorn
+**Back end and data:** Python · FastAPI · Flask · Pydantic · TypeScript · Node · PostgreSQL (row-level security, triggers, `SECURITY DEFINER` functions, migrations) · Supabase · SQLite · pgvector
 
-**Diagrams and docs:** Mermaid · SVG diagrams · architecture decision records
+**Front end:** Next.js 16 · React 19 (Server Components, Server Actions) · Tailwind CSS · installable PWAs for iPhone, iPad and desktop
+
+**Security:** nonce-based CSP · CSRF protection · SSRF-safe fetching · least-privilege database roles · encrypted tokens · secret scanning · host hardening (systemd sandboxing, SSH, firewall)
+
+**Delivery:** GitHub Actions · CodeQL · Dependabot · Docker · Vercel · Render · Raspberry Pi and systemd · Vitest · pytest · mypy (strict) · ruff · ESLint
+
+**Working with AI coding agents:** Claude Code · Cursor · Grok

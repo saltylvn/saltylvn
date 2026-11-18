@@ -2,6 +2,8 @@
 
 **AI Solutions Engineer | Multi-Agent Orchestration · MCP & API Integrations · Workflow Automation | Shipping with Claude Code | Sales Veteran 10 Yrs**
 
+[Projects](#ai-agents-and-workflows) · [Where to look in the code](#for-engineers-where-to-look-in-the-code) · [Roles](#roles-im-built-for) · [How I work](#how-i-work) · [Skills](#skills)
+
 I spent 10 years in sales, 7 of them leading teams, so I know where a business loses hours to manual work. Now I build the AI systems that take that work away: multi-agent systems where specialist agents report to a supervisor, integrations that plug agents into the tools a team already uses (Slack, HubSpot, Gmail, Google, Notion, Postgres), and automations backed by SQL and a real data model, built to save measurable time. A person stays in control of anything that matters.
 
 What I bring that most builders don't: a decade across the table from customers and executives. I scope the real problem before I build, and I can explain the solution to the people who sign off on it.
@@ -10,8 +12,8 @@ I ship everything with [Claude Code](https://claude.com/claude-code) as my daily
 
 | At a glance | |
 |---|---|
-| **Shipped** | 5 public AI projects: a 10-agent orchestration system ([Atlas](https://github.com/saltylvn/atlas)) plus 4 more, 3 with live demos, 2 in daily use by real people |
-| **Engineering volume** | 270+ merged pull requests and 1,500+ automated tests, CI on every change |
+| **Shipped** | 5 public AI projects: a multi-agent system I run in production every day ([Atlas](https://github.com/saltylvn/atlas)), two apps my household uses daily, and 3 live demos you can try without signing up |
+| **Engineering volume** | Nearly 300 merged pull requests and 1,700+ automated tests across the five projects, with CI on every change |
 | **AI in production** | Multi-agent orchestration (supervisor and specialists, a critic loop), evals that gate CI, run tracing, held-out test sets, fact guards, prompt-injection defense, model racing and fallbacks |
 | **Integrations built** | HubSpot (OAuth 2.0), Slack (bot and signed approvals), Gmail, Google Calendar and Google OAuth, Notion, GitHub, Figma, Gemini, Claude, OpenAI, RDAP, RSS, n8n, signed webhooks, REST APIs, and MCP servers in my daily workflow |
 | **Data and security** | Postgres row-level security tested against a real database, least-privilege database roles, nonce CSP, SSRF-safe fetching, audit logs |
@@ -27,7 +29,7 @@ I ship everything with [Claude Code](https://claude.com/claude-code) as my daily
 | **AI Engineer** (Applied AI, LLM Engineer) | Production AI features with structured output, validation, evals and cost limits | [Handoff Triage](https://github.com/saltylvn/handoff-triage), [DEVELOP](https://github.com/saltylvn/wellness-tracker) |
 | **AI + Automation Engineer** (Internal AI Engineer) | Automations that save measurable time, backed by SQL and a real data model | [Benchmark](https://github.com/saltylvn/benchmark-ai), [Dialed Kitchen](https://github.com/saltylvn/dialed-kitchen) |
 | **AI Workflow Engineer** (AI Agent Engineer, Agentic AI Engineer) | Supervisor and specialist agents with approval gates, guards and traces | [Benchmark](https://github.com/saltylvn/benchmark-ai), [Atlas](https://github.com/saltylvn/atlas) |
-| **Software Engineer** (Full-stack, Product Engineer) | Next.js, TypeScript, Python and Postgres apps in daily use, with 1,000+ tests and CI on every change | [Dialed Kitchen](https://github.com/saltylvn/dialed-kitchen), [DEVELOP](https://github.com/saltylvn/wellness-tracker) |
+| **Software Engineer** (Full-stack, Product Engineer) | Next.js, TypeScript, Python and Postgres apps in daily use, with 800+ tests between them and CI on every change | [Dialed Kitchen](https://github.com/saltylvn/dialed-kitchen), [DEVELOP](https://github.com/saltylvn/wellness-tracker) |
 | **Forward Deployed Engineer** (Agent Deployment Engineer) | Scoping a customer's real problem, then building and deploying the agent into their tools | [Benchmark](https://github.com/saltylvn/benchmark-ai), [Handoff Triage](https://github.com/saltylvn/handoff-triage) |
 | **Solutions Engineer** (AI Solutions, Implementation) | 10 years with customers and executives, plus the integrations to back it up: OAuth, webhooks, CRM and Slack | [Handoff Triage](https://github.com/saltylvn/handoff-triage) |
 | **GTM Engineer** (Revenue / RevOps Engineer) | CRM automation, enrichment and routing with a person approving the risky calls | [Handoff Triage](https://github.com/saltylvn/handoff-triage) (HubSpot, RDAP, Slack) |
@@ -65,7 +67,14 @@ I ship everything with [Claude Code](https://claude.com/claude-code) as my daily
 
 **A personal chief of staff run by a team of agents.** A Chief of Staff supervisor routes work to eight specialists, each with one job, its own tools and a written list of what it must never do, and a QA agent reviews the whole system once a week. On a schedule they brief me twice a day, sort my inbox, plan the week, track renewals, condense the news and draft replies. Nothing leaves without me: drafts open in my own Mail or Messages app and I tap Send.
 
-It runs in production for one owner behind two-factor sign-in, so there is no public demo. Clone the repo and `npm run dev` starts a demo with fictional data and no keys.
+It runs in production for one owner behind two-factor sign-in, so there is no public demo. Clone the repo and `npm run dev` starts a demo with fictional data and no keys. Estimated time saved: about 10 hours a week.
+
+<table>
+  <tr>
+    <td width="50%"><a href="https://github.com/saltylvn/atlas#readme"><img src="https://github.com/saltylvn/atlas/raw/main/docs/showcase/overview.png" alt="Atlas overview: a plain-text system summary (connect, collect, compute, judge, retrieve, mentor, verify), with automated tests, eval cases, two briefs a day and about 10 hours saved a week"></a><br><sub><b>Overview:</b> rules compute every fact; the model makes the judgment calls</sub></td>
+    <td width="50%"><a href="https://github.com/saltylvn/atlas#readme"><img src="https://github.com/saltylvn/atlas/raw/main/docs/showcase/mission-control.png" alt="Mission Control: a live map of the Chief of Staff routing work to specialist agents, the sources outside Atlas, the QA agent, and a step-by-step run trace"></a><br><sub><b>Mission Control:</b> a live map of the agents and a trace of every run</sub></td>
+  </tr>
+</table>
 
 ```mermaid
 flowchart LR

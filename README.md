@@ -10,7 +10,7 @@ I ship everything with [Claude Code](https://claude.com/claude-code) as my daily
 
 | At a glance | |
 |---|---|
-| **Shipped** | 5 AI projects: a 9-agent orchestration system (Atlas, public repo coming soon) plus 4 public projects, 3 with live demos, 2 in daily use by real people |
+| **Shipped** | 5 public AI projects: a 10-agent orchestration system ([Atlas](https://github.com/saltylvn/atlas)) plus 4 more, 3 with live demos, 2 in daily use by real people |
 | **Engineering volume** | 270+ merged pull requests and 1,500+ automated tests, CI on every change |
 | **AI in production** | Multi-agent orchestration (supervisor and specialists, a critic loop), evals that gate CI, run tracing, held-out test sets, fact guards, prompt-injection defense, model racing and fallbacks |
 | **Integrations built** | HubSpot (OAuth 2.0), Slack (bot and signed approvals), Gmail, Google Calendar and Google OAuth, Notion, GitHub, Figma, Gemini, Claude, OpenAI, RDAP, RSS, n8n, signed webhooks, REST APIs, and MCP servers in my daily workflow |
@@ -26,7 +26,7 @@ I ship everything with [Claude Code](https://claude.com/claude-code) as my daily
 |---|---|---|
 | **AI Engineer** (Applied AI, LLM Engineer) | Production AI features with structured output, validation, evals and cost limits | [Handoff Triage](https://github.com/saltylvn/handoff-triage), [DEVELOP](https://github.com/saltylvn/wellness-tracker) |
 | **AI + Automation Engineer** (Internal AI Engineer) | Automations that save measurable time, backed by SQL and a real data model | [Benchmark](https://github.com/saltylvn/benchmark-ai), [Dialed Kitchen](https://github.com/saltylvn/dialed-kitchen) |
-| **AI Workflow Engineer** (AI Agent Engineer, Agentic AI Engineer) | Supervisor and specialist agents with approval gates, guards and traces | [Benchmark](https://github.com/saltylvn/benchmark-ai), Atlas (private) |
+| **AI Workflow Engineer** (AI Agent Engineer, Agentic AI Engineer) | Supervisor and specialist agents with approval gates, guards and traces | [Benchmark](https://github.com/saltylvn/benchmark-ai), [Atlas](https://github.com/saltylvn/atlas) |
 | **Software Engineer** (Full-stack, Product Engineer) | Next.js, TypeScript, Python and Postgres apps in daily use, with 1,000+ tests and CI on every change | [Dialed Kitchen](https://github.com/saltylvn/dialed-kitchen), [DEVELOP](https://github.com/saltylvn/wellness-tracker) |
 | **Forward Deployed Engineer** (Agent Deployment Engineer) | Scoping a customer's real problem, then building and deploying the agent into their tools | [Benchmark](https://github.com/saltylvn/benchmark-ai), [Handoff Triage](https://github.com/saltylvn/handoff-triage) |
 | **Solutions Engineer** (AI Solutions, Implementation) | 10 years with customers and executives, plus the integrations to back it up: OAuth, webhooks, CRM and Slack | [Handoff Triage](https://github.com/saltylvn/handoff-triage) |
@@ -38,6 +38,10 @@ I ship everything with [Claude Code](https://claude.com/claude-code) as my daily
 
 | What you want to judge | Read this |
 |---|---|
+| An orchestrator that runs specialist agents under one deadline and traces every step | [atlas/lib/agents/chiefOfStaff.ts](https://github.com/saltylvn/atlas/blob/main/lib/agents/chiefOfStaff.ts) |
+| RAG: full-text and pgvector rankings fused, a similarity floor, and citations checked against what was retrieved | [atlas/lib/domain/retrieval.ts](https://github.com/saltylvn/atlas/blob/main/lib/domain/retrieval.ts) |
+| Eval suites that fail CI when an agent drops below its bar (11 suites, 444 labeled cases) | [atlas/lib/evals](https://github.com/saltylvn/atlas/tree/main/lib/evals) |
+| Logs that no database role can rewrite, enforced by triggers | [atlas/supabase/migrations/…_append_only_logs.sql](https://github.com/saltylvn/atlas/blob/main/supabase/migrations/20261118071622_append_only_logs.sql) |
 | Agent design: one pure, tested function that runs 11 checks | [benchmark-ai/src/agents/coordinator.ts](https://github.com/saltylvn/benchmark-ai/blob/main/src/agents/coordinator.ts) |
 | Supervisor, specialists and a Critic that rejects and retries plans | [benchmark-ai/src/orchestrator/supervisor.ts](https://github.com/saltylvn/benchmark-ai/blob/main/src/orchestrator/supervisor.ts) |
 | A guard that stops a model from changing any fact in a draft | [benchmark-ai/src/providers/guard.ts](https://github.com/saltylvn/benchmark-ai/blob/main/src/providers/guard.ts) |
@@ -57,9 +61,11 @@ I ship everything with [Claude Code](https://claude.com/claude-code) as my daily
 
 ## AI agents and workflows
 
-### Atlas · public repo coming soon
+### [Atlas](https://github.com/saltylvn/atlas)
 
-**A personal chief of staff run by a team of agents.** A Chief of Staff supervisor routes work to eight specialists, each with one job, its own tools and a written list of what it must never do. On a schedule they brief me twice a day, sort my inbox, plan the week, track renewals, condense the news and draft replies. Nothing leaves without me: drafts open in my own Mail or Messages app and I tap Send.
+**A personal chief of staff run by a team of agents.** A Chief of Staff supervisor routes work to eight specialists, each with one job, its own tools and a written list of what it must never do, and a QA agent reviews the whole system once a week. On a schedule they brief me twice a day, sort my inbox, plan the week, track renewals, condense the news and draft replies. Nothing leaves without me: drafts open in my own Mail or Messages app and I tap Send.
+
+It runs in production for one owner behind two-factor sign-in, so there is no public demo. Clone the repo and `npm run dev` starts a demo with fictional data and no keys.
 
 ```mermaid
 flowchart LR
@@ -70,14 +76,15 @@ flowchart LR
   q --> you(("I approve"))
   you --> out["Mail · Messages · web push"]
   sp -.-> tr[("Run traces<br/>and audit log")]
-  kb[("Postgres full-text<br/>+ pgvector")] --> ask["Ask Atlas<br/>Claude answers with sources"]
+  tr -.-> qa["QA agent<br/>weekly review"]
+  kb[("Postgres full-text<br/>+ pgvector")] --> ask["Ask Atlas<br/>answers with sources"]
 ```
 
-- **Orchestration:** a supervisor (hierarchical) pattern where specialists never call each other. A laptop Mission Control shows each agent's status, errors and cost, with Run Now, Pause and a live map of the orchestration as agents work.
-- **Evals and observability:** an eval suite for each agent (9 in all) scored against labeled cases, and CI fails the build if one drops below its threshold. Every run leaves a step-by-step trace, and every action lands in an append-only audit trail.
-- **RAG:** Ask Atlas answers questions from my own data with hybrid search (Postgres full-text plus pgvector embeddings, fused) and a similarity floor set from a live eval; Claude writes only from the retrieved passages and cites them.
-- **Integrations and safety:** 12 connectors (Gmail headers only, Google Calendar and iCal, Notion, GitHub, Figma, RSS and news feeds, web push, Siri capture), an outbound kill switch, Zod validation at every boundary, SSRF-safe fetching, and Google sign-in with MFA.
-- **Data and quality:** 31 tables, all with row-level security, 16 versioned migrations, 480+ tests, and 60 merged pull requests.
+- **Orchestration:** a supervisor (hierarchical) pattern where specialists never call each other. A laptop Mission Control shows each agent's status, errors and cost, with Run Now, Pause and a live map of the orchestration as agents work. A rules-only QA agent reads the same activity log and reviews the whole system once a week.
+- **Evals and observability:** 11 eval suites with 444 labeled cases, one for each agent plus retrieval, and CI fails the build if a suite drops below its bar. Every run leaves a step-by-step trace, and every action lands in an audit trail that database triggers keep append-only for every role.
+- **RAG:** Ask Atlas answers questions from my own data with hybrid search (Postgres full-text plus pgvector embeddings, fused) and a similarity floor set from a live eval. The model writes only from the retrieved passages, and its citations are checked against what was retrieved.
+- **Integrations and safety:** connectors for Gmail, Google Calendar and iCal, Notion, GitHub, Figma, RSS and news feeds, web push and Siri capture. Outbound requests go through one SSRF-safe fetch layer with an allowlist, and a token never follows a redirect to another origin. Stored tokens are sealed with AES-256-GCM. An outbound kill switch, Zod validation at every boundary, and Google sign-in with MFA. Mapped to NIST CSF 2.0, with a threat model and two written security reviews.
+- **Data and quality:** 29 tables, all with row-level security, 22 versioned migrations and 649 tests. Built over 86 merged pull requests in a private repo; the public repo is a clean-history copy.
 
 `Next.js 16` `React 19` `TypeScript` `Supabase (Postgres, Auth, RLS)` `pgvector` `Claude (Anthropic SDK)` `Gemini` `Zod` `imapflow` `web-push` `Vercel cron` `Vitest` `GitHub Actions`
 

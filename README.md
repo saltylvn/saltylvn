@@ -42,7 +42,7 @@ I ship everything with [Claude Code](https://claude.com/claude-code) as my daily
 |---|---|
 | An orchestrator that runs specialist agents under one deadline and traces every step | [atlas/lib/agents/chiefOfStaff.ts](https://github.com/saltylvn/atlas/blob/main/lib/agents/chiefOfStaff.ts) |
 | RAG: full-text and pgvector rankings fused, a similarity floor, and citations checked against what was retrieved | [atlas/lib/domain/retrieval.ts](https://github.com/saltylvn/atlas/blob/main/lib/domain/retrieval.ts) |
-| Eval suites that fail CI when an agent drops below its bar (11 suites, 454 labeled cases) | [atlas/lib/evals](https://github.com/saltylvn/atlas/tree/main/lib/evals) |
+| Eval suites that fail CI when an agent drops below its bar (11 suites, 485 labeled cases) | [atlas/lib/evals](https://github.com/saltylvn/atlas/tree/main/lib/evals) |
 | Logs that no database role can rewrite, enforced by triggers | [atlas/supabase/migrations/…_append_only_logs.sql](https://github.com/saltylvn/atlas/blob/main/supabase/migrations/20261118071622_append_only_logs.sql) |
 | Agent design: one pure, tested function that runs 11 checks | [benchmark-ai/src/agents/coordinator.ts](https://github.com/saltylvn/benchmark-ai/blob/main/src/agents/coordinator.ts) |
 | Supervisor, specialists and a Critic that rejects and retries plans | [benchmark-ai/src/orchestrator/supervisor.ts](https://github.com/saltylvn/benchmark-ai/blob/main/src/orchestrator/supervisor.ts) |
@@ -90,10 +90,10 @@ flowchart LR
 ```
 
 - **Orchestration:** a supervisor (hierarchical) pattern where specialists never call each other. A laptop Mission Control shows each agent's status, errors and cost, with Run Now, Pause and a live map of the orchestration as agents work. A rules-only QA agent reads the same activity log and reviews the whole system once a week.
-- **Evals and observability:** 11 eval suites with 454 labeled cases, one for each agent plus retrieval, and CI fails the build if a suite drops below its bar. Every run leaves a step-by-step trace, and every action lands in an audit trail that database triggers keep append-only for every role.
+- **Evals and observability:** 11 eval suites with 485 labeled cases, one for each agent plus retrieval, and CI fails the build if a suite drops below its bar. Every run leaves a step-by-step trace, and every action lands in an audit trail that database triggers keep append-only for every role.
 - **RAG:** Ask Atlas answers questions from my own data with hybrid search (Postgres full-text plus pgvector embeddings, fused) and a similarity floor set from a live eval. The model writes only from the retrieved passages, and its citations are checked against what was retrieved.
 - **Integrations and safety:** connectors for Gmail, Google Calendar and iCal, Notion, GitHub, Figma, RSS and news feeds, web push and Siri capture. Outbound requests go through one SSRF-safe fetch layer with an allowlist, and a token never follows a redirect to another origin. Stored tokens are sealed with AES-256-GCM. An outbound kill switch, Zod validation at every boundary, and Google sign-in with MFA. Mapped to NIST CSF 2.0, with a threat model and two written security reviews.
-- **Data and quality:** 29 tables, all with row-level security, 22 versioned migrations and 678 tests. Built over 88 merged pull requests in a private repo; the public repo is a clean-history copy.
+- **Data and quality:** 29 tables, all with row-level security, 22 versioned migrations and 684 tests. Built over 89 merged pull requests in a private repo; the public repo is a clean-history copy.
 
 `Next.js 16` `React 19` `TypeScript` `Supabase (Postgres, Auth, RLS)` `pgvector` `Claude (Anthropic SDK)` `Gemini` `Zod` `imapflow` `web-push` `Vercel cron` `Vitest` `GitHub Actions`
 

@@ -13,7 +13,7 @@ I ship everything with [Claude Code](https://claude.com/claude-code) as my daily
 | At a glance | |
 |---|---|
 | **Shipped** | 5 public AI projects: a multi-agent system I run in production every day ([Atlas](https://github.com/saltylvn/atlas)), two apps my household uses daily, and 3 live demos you can try without signing up |
-| **Engineering volume** | 400+ merged pull requests and 2,600+ automated tests across my projects, with CI on every change. Atlas alone: 200 merged pull requests and 1,620 tests |
+| **Engineering volume** | 400+ merged pull requests and 2,600+ automated tests across my projects, with CI on every change. Atlas alone: 200+ merged pull requests and 1,630 tests |
 | **AI in production** | Multi-agent orchestration (supervisor and specialists, a critic loop), evals that gate CI, run tracing, held-out test sets, fact guards, prompt-injection defense, model racing and fallbacks |
 | **Integrations built** | HubSpot (OAuth 2.0), Slack (bot and signed approvals), Gmail, Google Calendar and Google OAuth, Notion, GitHub, Figma, Gemini, Claude, OpenAI, RDAP, RSS, n8n, signed webhooks, REST APIs, and MCP servers in my daily workflow |
 | **Data and security** | Postgres row-level security tested against a real database, least-privilege database roles, nonce CSP, SSRF-safe fetching, audit logs |
@@ -68,7 +68,7 @@ I ship everything with [Claude Code](https://claude.com/claude-code) as my daily
 **My daily and career optimization system: rules first, with workflows, bots and AI agents on top.** Two desks. The Daily desk briefs me twice a day, sorts my inbox, plans my week, syncs Google Calendar, tracks renewals and condenses the news. The Career desk tracks live labor-market data, targets roles, maps my skill gaps to proof projects and logs every application from email. A Chief of Staff orchestrates 8 workflows and 10 bots, each with one job and a written list of what it must never do, and a QA agent reviews the whole system once a week. Nothing leaves without me: drafts open in my own Mail or Messages app and I tap Send.
 
 - **5 AI agents** that pick their own next tool in a loop, inside step and call budgets: a **Researcher** (company research with cited sources), a **Tailor** (maps each must-have to proof from my resume), a **Coach** (interview prep with true stories), a **Planner** (three moves for my week, which I approve) and a **Nudger** (application follow-ups). Every tool is read-only, and each agent finishes only after a rules check and a separate AI judge. A night shift runs the Researcher, Tailor and Nudger while I sleep.
-- **My own MCP server:** Claude connects over OAuth 2.1 with PKCE and gets 10 read-only tools (apply queue, funnel, market, interview prep, a spoken practice interview, search over my resumes and more), so I can work with Atlas from any Claude app, by voice. Every call is audited and rate-limited.
+- **My own MCP server:** Claude connects over OAuth 2.1 with PKCE and gets 11 read-only tools (apply queue, funnel, market, interview prep, a spoken practice interview, my GitHub projects, search over my resumes and more), so I can work with Atlas from any Claude app, by voice. Every call is audited and rate-limited.
 
 It runs in production for one owner behind two-factor sign-in, so there is no public demo. Clone the repo and `npm run dev` starts a demo with fictional data and no keys. Estimated time saved: about 10 hours a week.
 
@@ -86,7 +86,7 @@ flowchart LR
   cos --> sp["Workflows and bots<br/>one job each"]
   sp --> ag["5 AI agents<br/>tool loop + judge"]
   ag --> q
-  claude["Claude (any app)"] -- "MCP, OAuth 2.1" --> mcp["10 read-only tools"]
+  claude["Claude (any app)"] -- "MCP, OAuth 2.1" --> mcp["11 read-only tools"]
   mcp -.-> kb
   sp --> q["Approval queue"]
   q --> you(("I approve"))
@@ -100,7 +100,7 @@ flowchart LR
 - **Evals and observability:** 11 eval suites with 485 labeled cases, one for each agent plus retrieval, and CI fails the build if a suite drops below its bar. Every run leaves a step-by-step trace, and every action lands in an audit trail that database triggers keep append-only for every role.
 - **RAG:** Ask Atlas answers questions from my own data with hybrid search (Postgres full-text plus pgvector embeddings, fused) and a similarity floor set from a live eval. The model writes only from the retrieved passages, and its citations are checked against what was retrieved.
 - **Integrations and safety:** connectors for Gmail, Google Calendar and iCal, Notion, GitHub, Figma, RSS and news feeds, web push and Siri capture. Outbound requests go through one SSRF-safe fetch layer with an allowlist, and a token never follows a redirect to another origin. Stored tokens are sealed with AES-256-GCM. An outbound kill switch, Zod validation at every boundary, and Google sign-in with MFA. Mapped to NIST CSF 2.0, with a threat model and two written security reviews.
-- **Data and quality:** 44 tables, all with row-level security, 47 versioned migrations and 1,620 tests. Built over 200 merged pull requests in a private repo; the public repo is a clean-history copy from 18 November 2026, so the AI agents and the MCP server are not in it yet.
+- **Data and quality:** 44 tables, all with row-level security, 48 versioned migrations and 1,630 tests. Built over 200+ merged pull requests in a private repo; the public repo is a clean-history copy from 18 November 2026, so the AI agents and the MCP server are not in it yet.
 
 `Next.js 16` `React 19` `TypeScript` `Supabase (Postgres, Auth, RLS)` `pgvector` `Claude (Anthropic SDK)` `Gemini` `Zod` `imapflow` `web-push` `Vercel cron` `Vitest` `GitHub Actions`
 

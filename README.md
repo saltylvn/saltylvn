@@ -1,6 +1,6 @@
 # Hi, I'm Tyler Clark 👋
 
-**AI Solutions Engineer | Multi-Agent Orchestration · MCP & API Integrations · Workflow Automation | Shipping with Claude Code | Sales Veteran 10 Yrs**
+**Solutions & Software Engineer | I build rule-based systems with automations, bots & AI agents on top | APIs · MCP | Python · TypeScript · Next.js · Postgres · Claude | 10 Yrs Sales Leadership**
 
 [Projects](#ai-agents-and-workflows) · [Where to look in the code](#for-engineers-where-to-look-in-the-code) · [Roles](#roles-im-built-for) · [How I work](#how-i-work) · [Skills](#skills)
 
@@ -13,7 +13,7 @@ I ship everything with [Claude Code](https://claude.com/claude-code) as my daily
 | At a glance | |
 |---|---|
 | **Shipped** | 5 public AI projects: a multi-agent system I run in production every day ([Atlas](https://github.com/saltylvn/atlas)), two apps my household uses daily, and 3 live demos you can try without signing up |
-| **Engineering volume** | Nearly 300 merged pull requests and 1,700+ automated tests across the five projects, with CI on every change |
+| **Engineering volume** | 400+ merged pull requests and 2,600+ automated tests across my projects, with CI on every change. Atlas alone: 200 merged pull requests and 1,620 tests |
 | **AI in production** | Multi-agent orchestration (supervisor and specialists, a critic loop), evals that gate CI, run tracing, held-out test sets, fact guards, prompt-injection defense, model racing and fallbacks |
 | **Integrations built** | HubSpot (OAuth 2.0), Slack (bot and signed approvals), Gmail, Google Calendar and Google OAuth, Notion, GitHub, Figma, Gemini, Claude, OpenAI, RDAP, RSS, n8n, signed webhooks, REST APIs, and MCP servers in my daily workflow |
 | **Data and security** | Postgres row-level security tested against a real database, least-privilege database roles, nonce CSP, SSRF-safe fetching, audit logs |
@@ -65,7 +65,10 @@ I ship everything with [Claude Code](https://claude.com/claude-code) as my daily
 
 ### [Atlas](https://github.com/saltylvn/atlas)
 
-**A personal chief of staff run by a team of agents.** A Chief of Staff supervisor routes work to eight specialists, each with one job, its own tools and a written list of what it must never do, and a QA agent reviews the whole system once a week. On a schedule they brief me twice a day, sort my inbox, plan the week, track renewals, condense the news and draft replies. Nothing leaves without me: drafts open in my own Mail or Messages app and I tap Send.
+**My daily and career optimization system: rules first, with workflows, bots and AI agents on top.** Two desks. The Daily desk briefs me twice a day, sorts my inbox, plans my week, syncs Google Calendar, tracks renewals and condenses the news. The Career desk tracks live labor-market data, targets roles, maps my skill gaps to proof projects and logs every application from email. A Chief of Staff orchestrates 8 workflows and 10 bots, each with one job and a written list of what it must never do, and a QA agent reviews the whole system once a week. Nothing leaves without me: drafts open in my own Mail or Messages app and I tap Send.
+
+- **5 AI agents** that pick their own next tool in a loop, inside step and call budgets: a **Researcher** (company research with cited sources), a **Tailor** (maps each must-have to proof from my resume), a **Coach** (interview prep with true stories), a **Planner** (three moves for my week, which I approve) and a **Nudger** (application follow-ups). Every tool is read-only, and each agent finishes only after a rules check and a separate AI judge. A night shift runs the Researcher, Tailor and Nudger while I sleep.
+- **My own MCP server:** Claude connects over OAuth 2.1 with PKCE and gets 10 read-only tools (apply queue, funnel, market, interview prep, a spoken practice interview, search over my resumes and more), so I can work with Atlas from any Claude app, by voice. Every call is audited and rate-limited.
 
 It runs in production for one owner behind two-factor sign-in, so there is no public demo. Clone the repo and `npm run dev` starts a demo with fictional data and no keys. Estimated time saved: about 10 hours a week.
 
@@ -80,7 +83,11 @@ It runs in production for one owner behind two-factor sign-in, so there is no pu
 flowchart LR
   cron["Vercel cron<br/>briefs and hourly sync"] --> cos["Chief of Staff<br/>supervisor"]
   src["Gmail · Google Calendar · Notion<br/>GitHub · Figma · RSS feeds"] --> sp
-  cos --> sp["8 specialist agents<br/>one job each"]
+  cos --> sp["Workflows and bots<br/>one job each"]
+  sp --> ag["5 AI agents<br/>tool loop + judge"]
+  ag --> q
+  claude["Claude (any app)"] -- "MCP, OAuth 2.1" --> mcp["10 read-only tools"]
+  mcp -.-> kb
   sp --> q["Approval queue"]
   q --> you(("I approve"))
   you --> out["Mail · Messages · web push"]
@@ -93,7 +100,7 @@ flowchart LR
 - **Evals and observability:** 11 eval suites with 485 labeled cases, one for each agent plus retrieval, and CI fails the build if a suite drops below its bar. Every run leaves a step-by-step trace, and every action lands in an audit trail that database triggers keep append-only for every role.
 - **RAG:** Ask Atlas answers questions from my own data with hybrid search (Postgres full-text plus pgvector embeddings, fused) and a similarity floor set from a live eval. The model writes only from the retrieved passages, and its citations are checked against what was retrieved.
 - **Integrations and safety:** connectors for Gmail, Google Calendar and iCal, Notion, GitHub, Figma, RSS and news feeds, web push and Siri capture. Outbound requests go through one SSRF-safe fetch layer with an allowlist, and a token never follows a redirect to another origin. Stored tokens are sealed with AES-256-GCM. An outbound kill switch, Zod validation at every boundary, and Google sign-in with MFA. Mapped to NIST CSF 2.0, with a threat model and two written security reviews.
-- **Data and quality:** 29 tables, all with row-level security, 22 versioned migrations and 684 tests. Built over 89 merged pull requests in a private repo; the public repo is a clean-history copy.
+- **Data and quality:** 44 tables, all with row-level security, 47 versioned migrations and 1,620 tests. Built over 200 merged pull requests in a private repo; the public repo is a clean-history copy from 18 November 2026, so the AI agents and the MCP server are not in it yet.
 
 `Next.js 16` `React 19` `TypeScript` `Supabase (Postgres, Auth, RLS)` `pgvector` `Claude (Anthropic SDK)` `Gemini` `Zod` `imapflow` `web-push` `Vercel cron` `Vitest` `GitHub Actions`
 
@@ -202,7 +209,7 @@ flowchart LR
 
 **AI engineering:** multi-agent orchestration (supervisor, critic, specialists) · human-in-the-loop approvals · RAG (hybrid full-text and pgvector search) · structured output with JSON schema · evals and observability (CI-gated eval suites, run traces) · property-based testing · fact guards and output checkers · prompt-injection defense · model racing and fallbacks · Google Gemini · Claude · OpenAI
 
-**Integrations and APIs:** MCP · HubSpot · Slack (bot, interactivity, webhooks) · Gmail · Google Calendar · Google OAuth (PKCE) · Notion · GitHub · Figma · OAuth 2.0 with token refresh · HMAC-signed webhooks · REST APIs · bearer-token automation APIs · RDAP · RSS · n8n
+**Integrations and APIs:** MCP servers (OAuth 2.1 with PKCE) · HubSpot · Slack (bot, interactivity, webhooks) · Gmail · Google Calendar · Google OAuth (PKCE) · Notion · GitHub · Figma · OAuth 2.0 with token refresh · HMAC-signed webhooks · REST APIs · bearer-token automation APIs · RDAP · RSS · n8n
 
 **Back end and data:** Python · FastAPI · Flask · Pydantic · TypeScript · Node · PostgreSQL (row-level security, triggers, `SECURITY DEFINER` functions, migrations) · Supabase · SQLite · pgvector
 

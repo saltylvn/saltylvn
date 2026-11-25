@@ -74,8 +74,12 @@ It runs in production for one owner behind two-factor sign-in, so there is no pu
 
 <table>
   <tr>
-    <td width="50%"><a href="https://github.com/saltylvn/atlas#readme"><img src="https://github.com/saltylvn/atlas/raw/main/docs/showcase/overview.png" alt="Atlas overview: a plain-text system summary (connect, collect, compute, judge, retrieve, mentor, verify), with automated tests, eval cases, two briefs a day and about 10 hours saved a week"></a><br><sub><b>Overview:</b> rules compute every fact; the model makes the judgment calls</sub></td>
-    <td width="50%"><a href="https://github.com/saltylvn/atlas#readme"><img src="https://github.com/saltylvn/atlas/raw/main/docs/showcase/mission-control.png" alt="Mission Control: a live map of the Chief of Staff routing work to specialist agents, the sources outside Atlas, the QA agent, and a step-by-step run trace"></a><br><sub><b>Mission Control:</b> a live map of the agents and a trace of every run</sub></td>
+    <td width="50%"><a href="https://github.com/saltylvn/atlas#readme"><img src="https://github.com/saltylvn/atlas/raw/main/docs/showcase/atlas-system-map.png" alt="Atlas system map: one orchestrator, a Daily desk and a Career desk, five AI agents, the data pipeline, the MCP server and the QA bot, with a sample run trace and the system's counts"></a><br><sub><b>System map:</b> one orchestrator, two desks, five AI agents</sub></td>
+    <td width="50%"><a href="https://github.com/saltylvn/atlas#readme"><img src="https://github.com/saltylvn/atlas/raw/main/docs/showcase/atlas-2-technical.png" alt="Atlas 2.0 build notes: the rule for what counts as an agent, the 118-line agent loop, the typed state, the number check, the module boundaries, and what broke with each fix"></a><br><sub><b>Build notes:</b> the agent loop, typed state, and what broke</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><a href="https://github.com/saltylvn/atlas#readme"><img src="https://github.com/saltylvn/atlas/raw/main/docs/showcase/atlas-mcp-server.png" alt="The Atlas MCP server: one call end to end from Claude on an iPhone, the one-time OAuth sign-in, where the server sits in Atlas, five decisions with reasons, and the limits on every call"></a><br><sub><b>MCP server:</b> Claude reads Atlas from my iPhone, read-only</sub></td>
+    <td width="50%"><a href="https://github.com/saltylvn/atlas#readme"><img src="https://github.com/saltylvn/atlas/raw/main/docs/showcase/atlas-mcp-server-technical.png" alt="The MCP build for engineers: the OAuth flow on the wire with status codes, the gate and its decision table, the tool wrapper, the test that enforces read-only, and the known limits"></a><br><sub><b>MCP build notes:</b> OAuth on the wire, the gate, and the limits</sub></td>
   </tr>
 </table>
 
